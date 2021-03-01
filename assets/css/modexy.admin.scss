@@ -1,0 +1,69 @@
+#wpbody-content {
+	.hidden {
+		display: none;
+	}
+
+	#profile_img_msg {
+		color: red;
+	}
+
+	#profile_img_remover {
+		margin-left: 2rem;
+		border: 1px solid rgba(128, 128, 128, 0.3);
+		padding: 10px 15px;
+		background-color: #eee;
+		cursor: pointer;
+		color: rgba(0, 0, 255, 0.9);
+	}
+
+	#main-content {
+		display: flex;
+		align-items: stretch;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+
+		form {
+			border-left: 3px solid rgba(48, 48, 48, 0.3);
+			padding-left: 2rem;
+		}
+
+		#admin-profile {
+			background-color: rgba(48, 48, 48, 0.3);
+			max-width: 250px;
+			max-height: 600px;
+			width: 100%;
+			padding: 2rem 0.3rem;
+			border-radius: 10px;
+			box-shadow: 1px 1px 5px 0 black;
+			margin: 0 1rem 3rem;
+
+			#profile-img {
+				width: 170px;
+				height: 170px;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				margin: 0 auto;
+				border-radius: 50%;
+				border: 2px solid blue;
+				margin-bottom: 3rem;
+			}
+
+			#profile-infos {
+				text-align: center;
+				#description {
+					// text-align: left;
+					padding: 0 20px;
+				}
+				div {
+					margin-bottom: 1.5rem;
+				}
+
+				#social {
+					display: flex;
+					justify-content: space-evenly;
+				}
+			}
+		}
+	}
+}

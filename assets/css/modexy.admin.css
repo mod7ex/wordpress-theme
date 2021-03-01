@@ -1,0 +1,81 @@
+#wpbody-content .hidden {
+  display: none;
+}
+
+#wpbody-content #profile_img_msg {
+  color: red;
+}
+
+#wpbody-content #profile_img_remover {
+  margin-left: 2rem;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  padding: 10px 15px;
+  background-color: #eee;
+  cursor: pointer;
+  color: rgba(0, 0, 255, 0.9);
+}
+
+#wpbody-content #main-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#wpbody-content #main-content form {
+  border-left: 3px solid rgba(48, 48, 48, 0.3);
+  padding-left: 2rem;
+}
+
+#wpbody-content #main-content #admin-profile {
+  background-color: rgba(48, 48, 48, 0.3);
+  max-width: 250px;
+  max-height: 600px;
+  width: 100%;
+  padding: 2rem 0.3rem;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 5px 0 black;
+          box-shadow: 1px 1px 5px 0 black;
+  margin: 0 1rem 3rem;
+}
+
+#wpbody-content #main-content #admin-profile #profile-img {
+  width: 170px;
+  height: 170px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid blue;
+  margin-bottom: 3rem;
+}
+
+#wpbody-content #main-content #admin-profile #profile-infos {
+  text-align: center;
+}
+
+#wpbody-content #main-content #admin-profile #profile-infos #description {
+  padding: 0 20px;
+}
+
+#wpbody-content #main-content #admin-profile #profile-infos div {
+  margin-bottom: 1.5rem;
+}
+
+#wpbody-content #main-content #admin-profile #profile-infos #social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+/*# sourceMappingURL=modexy.admin.css.map */
