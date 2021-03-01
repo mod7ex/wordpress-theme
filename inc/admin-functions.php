@@ -59,6 +59,15 @@ function facebook_markup(){
 }
 
 
+function custom_css_markup(){
+    $custom_css = empty(get_option('custom_css')) ? '/* Edit Your Css Here */' : get_option('custom_css');
+
+    // echo '<div id="editor-container"><div id="css-editor">' . $custom_css . '</div></div>';
+    echo '<div id="css-editor">' . $custom_css . '</div>';
+    echo '<textarea name="custom_css" >' . $custom_css . '</textarea>';
+}
+
+
 
 
 
@@ -116,6 +125,14 @@ add_action('admin_menu', function(){
         add_settings_field('description', 'Description', 'description_markup', 'modexy_admin', 'theme-admin-details');
         add_settings_field('twitter', 'Twitter Username', 'twitter_markup', 'modexy_admin', 'theme-admin-details');
         add_settings_field('facebook', 'Facebook', 'facebook_markup', 'modexy_admin', 'theme-admin-details');
+
+
+        // admin custom css
+        register_setting('custom-css-group', 'custom_css');
+
+        add_settings_section('theme-custom-css', 'Theme Custom Css', function(){}, 'modexy_css');
+
+        add_settings_field('custom-css-field', 'Customize your css', 'custom_css_markup', 'modexy_css', 'theme-custom-css');
 
     });
 
