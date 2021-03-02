@@ -19,10 +19,17 @@ add_action('admin_enqueue_scripts', function ($hook) use ($ver) {
 
         wp_register_script('ace', AURI . 'assets/js/ace/src-noconflict/ace.js', array(), '1.4.12', true);
         wp_register_script('modexy-custom-css', AURI . 'assets/js/custom-css.js', array('ace'), $ver, true);
-        wp_register_style('modexy-custom-css', AURI . 'assets/css/custom-css.css', array(), $ver);
+        wp_register_style('modexy-custom-css', AURI . 'assets/css/custom-css.css', array(), $ver, 'all');
 
         wp_enqueue_script('modexy-custom-css');
         wp_enqueue_style('modexy-custom-css');
+    }
+
+    if($hook == 'modexy_page_modexy_settings') {
+
+        wp_register_style('modexy-settings', AURI . 'assets/css/modexy.settings.css', array(), $ver, 'all');
+
+        wp_enqueue_style('modexy-settings');
     }
 
     // var_dump($hook);

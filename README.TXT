@@ -1,1 +1,0 @@
-## A wordpress Theme i developed

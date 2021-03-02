@@ -109,6 +109,23 @@ function contact_form_markup(){
 }
 
 
+function sidebars_markup(){
+    $sidebars = get_option('sidebars');
+
+    echo '<div id="sidebars-area">';
+
+    for ($i=0; $i < 3; $i++) {
+
+        $sidebar = isset($sidebars[$i]) ? $sidebars[$i] : null;
+
+        echo '<label type="text" class="sidebar-input">Sidebar ' . ($i + 1) . '<input name="sidebars[]" value="' . $sidebar . '" placeholder="sidebar name"></label>';
+    }
+    
+    echo '</div>';
+    
+}
+
+
 
 
 // sanitize input
@@ -118,6 +135,14 @@ function sanitize_twitter_username($t_username){
 
 function sanitize_custom_css($css){
     return esc_textarea($css);
+}
+
+function sanitize_sidebars($sidebars){
+    // var_dump($sidebars);
+    // die();
+
+    return $sidebars;
+    
 }
 
 
@@ -195,6 +220,7 @@ add_action('admin_menu', function(){
         register_setting('modexy-settings-group', 'custom_header');
         register_setting('modexy-settings-group', 'custom_background');
         register_setting('modexy-settings-group', 'contact_form');
+        register_setting('modexy-settings-group', 'sidebars', 'sanitize_sidebars');
 
         add_settings_section('general-settings-section', 'General Settings', function(){}, 'modexy_settings');
 
@@ -202,6 +228,7 @@ add_action('admin_menu', function(){
         add_settings_field('custom-header-field', 'Custom Header', 'custom_header_markup', 'modexy_settings', 'general-settings-section');
         add_settings_field('custom-background-field', 'Custom Background', 'custom_background_markup', 'modexy_settings', 'general-settings-section');
         add_settings_field('contact-form-field', 'Contact Form', 'contact_form_markup', 'modexy_settings', 'general-settings-section');
+        add_settings_field('sidebars-field', 'Manage Sidebars Names', 'sidebars_markup', 'modexy_settings', 'general-settings-section');
     });
 
 });
