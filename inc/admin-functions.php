@@ -62,9 +62,8 @@ function facebook_markup(){
 function custom_css_markup(){
     $custom_css = empty(get_option('custom_css')) ? '/* Edit Your Css Here */' : get_option('custom_css');
 
-    // echo '<div id="editor-container"><div id="css-editor">' . $custom_css . '</div></div>';
-    echo '<div id="css-editor">' . $custom_css . '</div>';
-    echo '<textarea name="custom_css" >' . $custom_css . '</textarea>';
+    echo '<div id="editor-container"><div id="css-editor">' . $custom_css . '</div></div>';
+    echo '<textarea name="custom_css" id="hidden-editor">' . $custom_css . '</textarea>';
 }
 
 
@@ -74,6 +73,10 @@ function custom_css_markup(){
 // sanitize input
 function sanitize_twitter_username($t_username){
     return str_replace('@', '', sanitize_text_field($t_username));
+}
+
+function sanitize_custom_css($css){
+    return esc_textarea($css);
 }
 
 
@@ -128,7 +131,7 @@ add_action('admin_menu', function(){
 
 
         // admin custom css
-        register_setting('custom-css-group', 'custom_css');
+        register_setting('custom-css-group', 'custom_css', 'sanitize_custom_css');
 
         add_settings_section('theme-custom-css', 'Theme Custom Css', function(){}, 'modexy_css');
 

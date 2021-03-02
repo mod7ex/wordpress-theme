@@ -6,8 +6,6 @@ editor.session.setMode("ace/mode/css");
 
 jQuery(document).ready(function ($) {
 	$("form").on("submit", function (e) {
-		$("textarea").val(editor.getSession().getValue());
-
-		e.preventDefault();
+		$("#hidden-editor").val(editor.getSession().getValue());
 	});
 });
