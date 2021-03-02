@@ -9,6 +9,10 @@ function custom_css_page_markup(){
     require_once(AP . 'inc/templates/custom-css.php');
 }
 
+function settings_page_markup(){
+    require_once(AP . 'inc/templates/modexy-settings.php');
+}
+
 
 // fields markup
 function profile_img_markup(){
@@ -67,6 +71,43 @@ function custom_css_markup(){
 }
 
 
+function post_formats_markup(){
+    $formats = array( 'aside', 'chat', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio');
+
+    $post_formats = get_option('post_formats');
+    
+    foreach($formats as $format){
+        $checked = (is_array($post_formats) && array_key_exists($format, $post_formats)) ? 'checked' : '';
+
+        echo '<label style="margin-right: 20px;" for="' . $format . '-format" >';
+        echo '<input type="checkbox" name="post_formats[' . $format . ']" value="1" id="' . $format . '-format" ' . $checked . ' >' . $format . '</label>';
+    }
+}
+
+
+function custom_header_markup(){
+    $custom_header = get_option('custom_header');
+
+    $checked = empty($custom_header) ? '' : 'checked';
+    echo '<label for="custom_header" ><input type="checkbox" id="custom_header" name="custom_header" ' . $checked . '>Custom Header</label>';
+}
+
+
+function custom_background_markup(){
+    $custom_background = get_option('custom_background');
+
+    $checked = empty($custom_background) ? '' : 'checked';
+    echo '<label for="custom_background" ><input type="checkbox" id="custom_background" name="custom_background" ' . $checked . '>Custom Background</label>';
+}
+
+
+function contact_form_markup(){
+    $contact_form = get_option('contact_form');
+
+    $checked = empty($contact_form) ? '' : 'checked';
+    echo '<label for="contact_form" ><input type="checkbox" id="contact_form" name="contact_form" ' . $checked . '>Contact Form</label>';
+}
+
 
 
 
@@ -78,6 +119,7 @@ function sanitize_twitter_username($t_username){
 function sanitize_custom_css($css){
     return esc_textarea($css);
 }
+
 
 
 add_action('admin_menu', function(){
@@ -110,6 +152,15 @@ add_action('admin_menu', function(){
         'custom_css_page_markup'
     );
 
+    add_submenu_page(
+        'modexy_admin',
+        'Theme Settings',
+        'Settings',
+        'manage_options',
+        'modexy_settings',
+        'settings_page_markup'
+    );
+
     add_action('admin_init', function(){
 
         // admin settings group
@@ -137,6 +188,20 @@ add_action('admin_menu', function(){
 
         add_settings_field('custom-css-field', 'Customize your css', 'custom_css_markup', 'modexy_css', 'theme-custom-css');
 
+
+
+        // Theme Settings
+        register_setting('modexy-settings-group', 'post_formats');
+        register_setting('modexy-settings-group', 'custom_header');
+        register_setting('modexy-settings-group', 'custom_background');
+        register_setting('modexy-settings-group', 'contact_form');
+
+        add_settings_section('general-settings-section', 'General Settings', function(){}, 'modexy_settings');
+
+        add_settings_field('post-formats-field', 'Post Formats', 'post_formats_markup', 'modexy_settings', 'general-settings-section');
+        add_settings_field('custom-header-field', 'Custom Header', 'custom_header_markup', 'modexy_settings', 'general-settings-section');
+        add_settings_field('custom-background-field', 'Custom Background', 'custom_background_markup', 'modexy_settings', 'general-settings-section');
+        add_settings_field('contact-form-field', 'Contact Form', 'contact_form_markup', 'modexy_settings', 'general-settings-section');
     });
 
 });
