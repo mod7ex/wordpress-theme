@@ -3,7 +3,6 @@
   height: 400px;
   position: relative;
 }
-
 #editor-container #css-editor {
   position: absolute;
   top: 0;
@@ -16,4 +15,3 @@
 #hidden-editor {
   display: none;
 }
-/*# sourceMappingURL=custom-css.css.map */
