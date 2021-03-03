@@ -11,6 +11,8 @@ require_once(AP . 'inc/theme-support.php');
 
 require_once(AP . 'inc/custom-post-type.php');
 
+require_once(AP . 'inc/clean.php');
+
 
 
 // register_activation_hook( __FILE__, function () {
