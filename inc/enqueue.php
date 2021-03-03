@@ -21,6 +21,7 @@ add_action('admin_enqueue_scripts', function ($hook) use ($ver) {
         wp_register_script('modexy-custom-css', AURI . 'assets/js/custom-css.js', array('ace'), $ver, true);
         wp_register_style('modexy-custom-css', AURI . 'assets/css/custom-css.css', array(), $ver, 'all');
 
+        wp_enqueue_script('ace');
         wp_enqueue_script('modexy-custom-css');
         wp_enqueue_style('modexy-custom-css');
     }
@@ -32,8 +33,13 @@ add_action('admin_enqueue_scripts', function ($hook) use ($ver) {
         wp_enqueue_style('modexy-settings');
     }
 
-    // var_dump($hook);
+});
 
-    // die();
-    
+
+
+add_action('wp_enqueue_scripts', function() use ($ver) {
+
+    wp_deregister_script('wp-embed');
+    wp_deregister_style('wp-block-library');
+
 });
