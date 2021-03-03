@@ -78,7 +78,8 @@ add_action('init', function(){
                 break;
 
             case 'email':
-                echo 'email here';
+
+                echo '<a href="mailto:' . get_post_meta($post_id, '_email_meta_key', true) . '">' . get_post_meta($post_id, '_email_meta_key', true) . '</a>';
                 break;
         }
     }, 10, 2);
@@ -97,13 +98,47 @@ add_action('init', function(){
                 wp_nonce_field('email_action', '_email_nonce');
                 $email = get_post_meta($post->ID, '_email_meta_key', true);
 
-                echo '<input type="email" value="' . $email . '" placeholder="E-mail" >';
+                echo '<div style="padding: 0.5rem;"><input type="email" name="contact_email_field" value="' . $email . '" placeholder="E-mail" ></div>';
             },
             'message',
             'side',
             'core'
         );
         
+    });
+
+
+    // save_post_{$post_type}
+    add_action('save_post_message', function ($post_id) {
+
+        if(!isset($_POST['_email_nonce'])){
+            return;
+        }
+
+        if(!wp_verify_nonce( $_POST['_email_nonce'], 'email_action')){
+            return;
+        }
+
+        if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE){
+            return;
+        }
+
+        if(!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
+        if(!isset($_POST['contact_email_field'])) {
+            return;
+        }
+        
+        $email = sanitize_text_field($_POST['contact_email_field']);
+
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return;
+        }
+
+        update_post_meta($post_id, '_email_meta_key', $email);
+
     });
 
 });
