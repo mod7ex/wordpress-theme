@@ -1,21 +1,17 @@
 #editor-container {
-  max-width: 900px;
-  height: 400px;
-  position: relative;
+	max-width: 900px;
+	height: 400px;
+	position: relative;
 }
 #editor-container #css-editor {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  font-size: 15px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	font-size: 15px;
 }
 
 #hidden-editor {
-  display: none;
-  -webkit-user-select: auto;
-     -moz-user-select: auto;
-      -ms-user-select: auto;
-          user-select: auto;
+	display: none;
 }
