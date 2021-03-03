@@ -5,16 +5,18 @@ module.exports = {
 	mode: "development", // "production" | "development" | "none"
 
 	entry: {
-		"custom-css": "./src/js/custom-css.js",
-		"modexy.admin": "./src/js/modexy-admin.js",
+		// javascript files
+		"custom.css": "./src/js/custom-css.script.js",
+		"modexy.admin": "./src/js/modexy-admin.script.js",
 
-		"custom-scss": "./src/sass/custom.css.scss",
-		"modexy.admin": "./src/sass/modexy.admin.scss",
-		"modexy.settings": "./src/sass/modexy.settings.scss",
+		// scss files
+		"custom-css": "./src/sass/custom-css.style.scss",
+		"modexy-admin": "./src/sass/modexy-admin.style.scss",
+		"modexy-settings": "./src/sass/modexy-settings.style.scss",
 	},
 
 	output: {
-		path: path.resolve(__dirname, "asset/js"),
+		path: path.resolve(__dirname, "assets/js"),
 		filename: "[name].js",
 	},
 
