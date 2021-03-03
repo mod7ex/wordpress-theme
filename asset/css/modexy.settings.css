@@ -1,0 +1,23 @@
+#sidebars-area {
+  max-width: 300px;
+  width: 100%;
+  padding: 10px;
+  margin-right: 1rem;
+  background-color: rgba(170, 170, 170, 0.1);
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px 0 rgba(128, 128, 128, 0.3);
+}
+#sidebars-area label.sidebar-input {
+  margin-bottom: 1rem;
+  display: block;
+}
+#sidebars-area label.sidebar-input input {
+  width: 100%;
+  padding: 7px;
+  border-radius: 3px;
+  border-color: rgba(0, 0, 255, 0.3);
+}
+#sidebars-area label.sidebar-input input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 255, 0.7);
+}
