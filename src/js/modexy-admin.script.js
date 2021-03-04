@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
-	var frame;
+	let frame;
 
-	$("#profile_img_uploader").on("click", function (e) {
+	$("#profile_img_uploader").on("click", (e) => {
 		e.preventDefault();
 
 		if (frame) {
@@ -18,8 +18,8 @@ jQuery(document).ready(function ($) {
 			multiple: false,
 		});
 
-		frame.on("select", function () {
-			var attachment = frame.state().get("selection").first().toJSON();
+		frame.on("select", () => {
+			let attachment = frame.state().get("selection").first().toJSON();
 
 			$("#profile-img").css("background-image", "url(" + attachment.url + ")");
 
@@ -32,7 +32,7 @@ jQuery(document).ready(function ($) {
 		frame.open();
 	});
 
-	$("#profile_img_remover").on("click", function (e) {
+	$("#profile_img_remover").on("click", (e) => {
 		e.preventDefault();
 
 		$("#profile_img").val("");
