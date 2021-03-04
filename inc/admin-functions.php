@@ -63,12 +63,12 @@ function facebook_markup(){
 }
 
 
-function custom_css_markup(){
-    $custom_css = empty(get_option('custom_css')) ? '/* Edit Your Css Here */' : get_option('custom_css');
+// function custom_css_markup(){
+//     $custom_css = empty(get_option('custom_css')) ? '/* Edit Your Css Here */' : get_option('custom_css');
 
-    echo '<div id="editor-container"><div id="css-editor">' . $custom_css . '</div></div>';
-    echo '<textarea name="custom_css" id="hidden-editor">' . $custom_css . '</textarea>';
-}
+//     echo '<div id="editor-container"><div id="css-editor">' . $custom_css . '</div></div>';
+//     echo '<textarea name="custom_css" id="hidden-editor">' . $custom_css . '</textarea>';
+// }
 
 
 function post_formats_markup(){
@@ -133,16 +133,12 @@ function sanitize_twitter_username($t_username){
     return str_replace('@', '', sanitize_text_field($t_username));
 }
 
-function sanitize_custom_css($css){
-    return esc_textarea($css);
-}
+// function sanitize_custom_css($css){
+//     return esc_textarea($css);
+// }
 
 function sanitize_sidebars($sidebars){
-    // var_dump($sidebars);
-    // die();
-
-    return $sidebars;
-    
+    return esc_attr($sidebars);
 }
 
 
@@ -205,14 +201,12 @@ add_action('admin_menu', function(){
         add_settings_field('twitter', 'Twitter Username', 'twitter_markup', 'modexy_admin', 'theme-admin-details');
         add_settings_field('facebook', 'Facebook', 'facebook_markup', 'modexy_admin', 'theme-admin-details');
 
+        // // admin custom css
+        // register_setting('custom-css-group', 'custom_css', 'sanitize_custom_css');
 
-        // admin custom css
-        register_setting('custom-css-group', 'custom_css', 'sanitize_custom_css');
+        // add_settings_section('theme-custom-css', 'Theme Custom Css', function(){}, 'modexy_css');
 
-        add_settings_section('theme-custom-css', 'Theme Custom Css', function(){}, 'modexy_css');
-
-        add_settings_field('custom-css-field', 'Customize your css', 'custom_css_markup', 'modexy_css', 'theme-custom-css');
-
+        // add_settings_field('custom-css-field', 'Customize your css', 'custom_css_markup', 'modexy_css', 'theme-custom-css');
 
 
         // Theme Settings

@@ -1,9 +1,21 @@
-#editor-container {
+form {
+  padding: 1rem;
+}
+form #editor-area {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+form #editor-area #editor-container {
+  flex-grow: 1;
+  margin-left: 3rem;
   max-width: 900px;
+  min-width: 300px;
   height: 400px;
   position: relative;
 }
-#editor-container #css-editor {
+form #editor-area #editor-container #css-editor {
   position: absolute;
   top: 0;
   right: 0;
@@ -11,7 +23,6 @@
   left: 0;
   font-size: 15px;
 }
-
-#hidden-editor {
+form #hidden-editor {
   display: none;
 }

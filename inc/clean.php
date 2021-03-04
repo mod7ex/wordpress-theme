@@ -18,3 +18,10 @@ add_filter('style_loader_src', 'remove_wp_ver');
 add_filter('the_generator', function(){
     return '';
 });
+
+
+// remove url query
+add_filter('removable_query_args', function($args) {
+    array_push($args, 'success');
+    return $args;
+});

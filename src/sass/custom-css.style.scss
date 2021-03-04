@@ -1,19 +1,34 @@
-#editor-container {
-	max-width: 900px;
-	height: 400px;
-	position: relative;
+form {
+	padding: 1rem;
 
-	#css-editor {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+	#editor-area {
+		display: flex;
+		justify-content: start;
+		align-items: flex-start;
+		flex-wrap: wrap;
 
-		font-size: 15px;
+		#editor-container {
+			flex-grow: 1;
+			margin-left: 3rem;
+
+			max-width: 900px;
+			min-width: 300px;
+			height: 400px;
+			position: relative;
+
+			#css-editor {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+
+				font-size: 15px;
+			}
+		}
 	}
-}
 
-#hidden-editor {
-	display: none;
+	#hidden-editor {
+		display: none;
+	}
 }
