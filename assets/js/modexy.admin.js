@@ -1,44 +1,13 @@
-jQuery(document).ready(function ($) {
-	var frame;
-
-	$("#profile_img_uploader").on("click", function (e) {
-		e.preventDefault();
-
-		if (frame) {
-			frame.open();
-			return;
-		}
-
-		// frame = wp.media.frames.file_frame = wp.media({
-		frame = wp.media({
-			title: "Select Or Upload Profile Picture",
-			button: {
-				text: "Upload Profile",
-			},
-			multiple: false,
-		});
-
-		frame.on("select", function () {
-			var attachment = frame.state().get("selection").first().toJSON();
-
-			$("#profile-img").css("background-image", "url(" + attachment.url + ")");
-
-			$("#profile_img").val(attachment.id);
-
-			$("#profile_img_remover").removeClass("hidden");
-			$("#profile_img_msg").removeClass("hidden");
-		});
-
-		frame.open();
-	});
-
-	$("#profile_img_remover").on("click", function (e) {
-		e.preventDefault();
-
-		$("#profile_img").val("");
-		$("#profile-img").css("background-image", "url()");
-
-		$("#profile_img_remover").addClass("hidden");
-		$("#profile_img_msg").removeClass("hidden");
-	});
-});
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+/******/ })()
+;
