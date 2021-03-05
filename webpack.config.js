@@ -13,6 +13,7 @@ module.exports = {
 		"custom-css": "./src/sass/custom-css.style.scss",
 		"modexy-admin": "./src/sass/modexy-admin.style.scss",
 		"modexy-settings": "./src/sass/modexy-settings.style.scss",
+		"modexy-styles": "./src/sass/modexy-styles.scss",
 	},
 
 	output: {

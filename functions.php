@@ -15,6 +15,8 @@ require_once(AP . 'inc/clean.php');
 
 require_once(AP . 'inc/form-handler.php');
 
+require_once(AP . 'inc/walker.php');
+
 
 
 // register_activation_hook( __FILE__, function () {

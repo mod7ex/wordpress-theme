@@ -18,3 +18,6 @@
 </head>
 
 <body <?php body_class(); ?>>
+    <div>
+        <?php get_template_part('template-parts/header/header'); ?>
+        <main id="container">

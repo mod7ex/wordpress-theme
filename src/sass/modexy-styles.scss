@@ -1,0 +1,93 @@
+@import "base/functions";
+@import "base/variables";
+@import "base/mixins";
+@import "base/config";
+
+header {
+	#showcase {
+		height: $show-case-height;
+		@extend .bg-img;
+
+		#showcase-area {
+			width: 100%;
+			height: 100%;
+			// background-color: ;
+			background: linear-gradient(to top, #000000e5 15%, $showcase-overlay 42%);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			color: $text-primary-color;
+
+			h1.shc-item {
+				font-size: 3rem;
+				font-weight: bolder;
+			}
+
+			.shc-item {
+				text-shadow: 2px 2px $shadow-color;
+				margin: 1rem;
+			}
+		}
+	}
+
+	nav {
+		position: relative;
+
+		ul {
+			position: absolute;
+			height: $nav-height;
+			top: -$nav-height;
+			right: 0;
+			left: 0;
+
+			list-style: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			li {
+				margin: 0 1rem;
+
+				&.active {
+					a {
+						color: $link-active-color;
+					}
+				}
+
+				a {
+					@include animate(color);
+
+					display: inline-block;
+					padding: $normal-padding;
+					text-decoration: none;
+					text-transform: uppercase;
+					color: $link-primary-color;
+
+					position: relative;
+
+					&:hover,
+					&:focus {
+						&:after {
+							content: "";
+							position: absolute;
+							display: block;
+							right: 0;
+							left: 0;
+							bottom: 0;
+							height: 2px;
+							background-color: currentColor;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+main#container {
+	max-width: $content-width;
+	background-color: cyan;
+	margin: 0 auto;
+	background-color: $content-bg-color;
+	padding: $normal-padding;
+}

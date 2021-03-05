@@ -42,8 +42,10 @@ add_action('wp_enqueue_scripts', function() use ($ver) {
     wp_deregister_script('wp-embed');
     wp_deregister_style('wp-block-library');
 
+    wp_register_style('modexy-styles', AURI . 'assets/css/modexy-styles.css', array(), $ver);
     wp_register_style('added-styles', AURI . 'assets/css/added-styles.css', array(), $ver);
 
+    wp_enqueue_style('modexy-styles');
     wp_enqueue_style('added-styles');
 
 });

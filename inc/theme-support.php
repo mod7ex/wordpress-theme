@@ -59,9 +59,9 @@ add_action('after_setup_theme', function(){
     ));
 
     register_nav_menus(array(
-        'primary' => 'Theme header Primary Menu',
-        'secondary' => 'Theme Secondary Menu',
-        'footer' => 'Theme footer Menu',
+        'primary' => esc_html__( 'Primary menu', 'Modexy' ),
+        'secondary'  => __( 'Secondary menu', 'Modexy' ),
+        'footer'  => __( 'Footer menu', 'Modexy' ),
     ));
 
 });
@@ -72,7 +72,7 @@ add_action('after_setup_theme', function(){
  * Register our sidebars and widgetized areas.
  *
  */
-add_action( 'widgets_init', function() {
+add_action('widgets_init', function() {
 
     $sidebars = get_option('sidebars');
 

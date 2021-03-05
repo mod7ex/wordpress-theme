@@ -1,0 +1,3 @@
+@mixin animate($attr: all, $time: 333) {
+	transition: $attr $time ease;
+}
