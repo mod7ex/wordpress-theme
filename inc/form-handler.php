@@ -15,8 +15,8 @@ add_action( 'admin_post_register_custom_styles', function () {
     if($css_file && fwrite($css_file, trim(esc_textarea($_POST['custom_css']))) && fclose($css_file)){
         $success = 'yes';
     }else{
-        $success = 'no';        
+        $success = 'no';
     }
     
-    wp_safe_redirect(wp_get_referer() . "&success=$success");
+    wp_safe_redirect(wp_get_referer() . "&custom_css_suc=$success");
 });

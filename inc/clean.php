@@ -22,6 +22,6 @@ add_filter('the_generator', function(){
 
 // remove url query
 add_filter('removable_query_args', function($args) {
-    array_push($args, 'success');
+    array_push($args, 'custom_css_suc');
     return $args;
 });

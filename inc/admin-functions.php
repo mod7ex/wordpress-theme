@@ -79,7 +79,7 @@ function post_formats_markup(){
     foreach($formats as $format){
         $checked = (is_array($post_formats) && array_key_exists($format, $post_formats)) ? 'checked' : '';
 
-        echo '<label style="margin-right: 20px;" for="' . $format . '-format" >';
+        echo '<label style="margin: 20px; display: inline-block;" for="' . $format . '-format" >';
         echo '<input type="checkbox" name="post_formats[' . $format . ']" value="1" id="' . $format . '-format" ' . $checked . ' >' . $format . '</label>';
     }
 }
@@ -138,7 +138,11 @@ function sanitize_twitter_username($t_username){
 // }
 
 function sanitize_sidebars($sidebars){
-    return esc_attr($sidebars);
+    foreach ($sidebars as $key => $value) {
+        $sidebars[$key] = esc_attr($value);
+    }
+
+    return $sidebars;
 }
 
 

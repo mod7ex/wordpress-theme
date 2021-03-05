@@ -2,25 +2,29 @@
 
 <br>
 
+
 <?php
     
-if(isset($_GET['success'])){
-    if($_GET['success'] == 'yes'){
-    ?>
-<div class="updated notice is-dismissible">
-    <p>Your Theme Css Has Been Updated</p>
-</div>
-<?php
-    }elseif($_GET['success'] == 'no'){
-    ?>
-<div class="notice-error notice is-dismissible">
-    <p>Something Went Wrong</p>
-</div>
-<?php
+if(isset($_GET['custom_css_suc'])){
+    if($_GET['custom_css_suc'] == 'yes'){
+        $class = 'updated';
+        $message = 'Your Theme Css Has Been Updated';
+
+    }elseif($_GET['custom_css_suc'] == 'no'){
+        $class = 'notice-error';
+        $message = 'Something Went Wrong';
+
     }
+    ?>
+
+<div class="<?php echo $class; ?> notice is-dismissible">
+    <p>
+        <?php echo $message; ?>
+    </p>
+</div>
+
+<?php
 }
-
-
 
     // ******** get the css in the file
     $css_file = fopen(AP . 'assets/css/added-styles.css',"r");
@@ -48,7 +52,7 @@ if(isset($_GET['success'])){
 
     <textarea name="custom_css" id="hidden-editor"><?= $custom_css ?></textarea>
 
-    <?php submit_button(); ?>
+    <?php submit_button('Save Style'); ?>
 
     <!-- the old way of get_option() -->
 
