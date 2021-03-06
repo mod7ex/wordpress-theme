@@ -1,8 +1,8 @@
-@mixin animate($attr: all, $time: 333) {
+@mixin animate($attr: all, $time: $base_time) {
 	transition: $attr $time ease;
 }
 
-@mixin key_frame($name: "move-underline", $duration: 333ms, $count: 1) {
+@mixin key_frame($name: "move-underline", $duration: $base_time, $count: 1) {
 	@keyframes move-underline {
 		0% {
 			bottom: -5px;

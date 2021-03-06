@@ -85,16 +85,13 @@ add_action('widgets_init', function() {
             continue;
         }
 
-        register_sidebar( array(
+        register_sidebar(array(
             'name'          => $name,
-            'id'            => 'sidebar-' . $key,
-            'before_widget' => '<div>',
+            'id'            => 'sidebar-' . ($key + 1),
+            'before_widget' => '<div class="widget-item">',
             'after_widget'  => '</div>',
-            'before_title'  => '<h2>',
-            'after_title'   => '</h2>',
+            'before_title'  => '<h3>',
+            'after_title'   => '</h3>',
         ));
-
     }
-
-
 } );

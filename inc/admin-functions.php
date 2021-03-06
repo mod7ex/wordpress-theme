@@ -76,10 +76,11 @@ function post_formats_markup(){
 
     $post_formats = get_option('post_formats');
     
-    foreach($formats as $format){
+    foreach($formats as $key => $format){
         $checked = (is_array($post_formats) && array_key_exists($format, $post_formats)) ? 'checked' : '';
 
-        echo '<label style="margin: 20px; display: inline-block;" for="' . $format . '-format" >';
+        $margin = $key != 0 ? 'margin: 20px;' : '';
+        echo '<label style="display: inline-block; ' . $margin . '" for="' . $format . '-format" >';
         echo '<input type="checkbox" name="post_formats[' . $format . ']" value="1" id="' . $format . '-format" ' . $checked . ' >' . $format . '</label>';
     }
 }
@@ -115,8 +116,8 @@ function sidebars_markup(){
     echo '<div id="sidebars-area">';
 
     for ($i=0; $i < 3; $i++) {
-
-        $sidebar = isset($sidebars[$i]) ? $sidebars[$i] : null;
+        
+        $sidebar = !empty($sidebars[$i]) ? $sidebars[$i] : null;
 
         echo '<label type="text" class="sidebar-input">Sidebar ' . ($i + 1) . '<input name="sidebars[]" value="' . $sidebar . '" placeholder="sidebar name"></label>';
     }
@@ -138,8 +139,13 @@ function sanitize_twitter_username($t_username){
 // }
 
 function sanitize_sidebars($sidebars){
+
     foreach ($sidebars as $key => $value) {
         $sidebars[$key] = esc_attr($value);
+    }
+
+    if(empty($sidebars[0])){
+        $sidebars[0] = 'Primary Sidebar';
     }
 
     return $sidebars;

@@ -2,10 +2,34 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	@include animate();
 }
 
 .bg-img {
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
+}
+
+.norm {
+	padding: $norm;
+	margin: $norm;
+}
+
+.normal-box-shadow {
+	// box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 3px 0 #d1d5db;
+}
+
+.hidden {
+	display: none;
+}
+
+.link {
+	text-decoration: none;
+	color: $primary-color;
+	&:hover {
+		color: $secondary-color;
+		@include animate();
+	}
 }

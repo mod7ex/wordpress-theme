@@ -1,13 +1,21 @@
 <?php get_header(); ?>
 
-<?php if(have_posts()): ?>
+<div id="front-page" class="page">
 
-<?php while(have_posts()): the_post(); ?>
+    <?php get_sidebar(); ?>
 
-<?php the_content(); ?>
+    <div class="main-content">
+        <?php if(have_posts()): ?>
 
-<?php endwhile; ?>
+        <?php while(have_posts()): the_post(); ?>
 
-<?php endif; ?>
+        <?php the_content(); ?>
+
+        <?php endwhile; ?>
+
+        <?php endif; ?>
+    </div>
+
+</div>
 
 <?php get_footer(); ?>

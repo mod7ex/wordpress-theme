@@ -17,7 +17,7 @@ header {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			color: $text-primary-color;
+			color: $text-secondary-color;
 
 			h1.shc-item {
 				font-size: 3rem;
@@ -84,9 +84,53 @@ header {
 }
 
 main#container {
+	div {
+		@extend .norm;
+	}
+
+	a {
+		@extend .link;
+	}
+
 	max-width: $content-width;
-	background-color: cyan;
 	margin: 0 auto;
-	background-color: $content-bg-color;
+
 	padding: $normal-padding;
+
+	#sidebar {
+		background-color: $content-bg-color;
+		min-width: 200px;
+		max-width: 200px;
+		height: fit-content;
+		@extend .normal-box-shadow;
+
+		.widget-item {
+			margin-bottom: 5 * $normal-margin;
+
+			h3 {
+				color: $text-primary-color;
+			}
+
+			ul {
+				text-transform: lowercase;
+				list-style: none;
+				padding: $normal-padding;
+
+				&.children {
+					padding-left: 7 * $normal-margin;
+				}
+			}
+		}
+	}
+
+	.main-content {
+		flex-grow: 1;
+		background-color: $content-bg-color;
+		@extend .normal-box-shadow;
+		padding: 5 * $normal-padding;
+	}
+
+	.page {
+		display: flex;
+	}
 }

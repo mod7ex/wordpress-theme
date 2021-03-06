@@ -1,13 +1,15 @@
+// colors
 $primary-color: #1d4ed8;
 $secondary-color: #3b82f6;
 
 $showcase-overlay: #1d4fd86e;
 
-$content-bg-color: #f1f5f9;
+$content-bg-color: #f9fafb;
 
 // text
+$text-primary-color: #374151;
 
-$text-primary-color: #f3f4f6;
+$text-secondary-color: #f3f4f6;
 
 $link-primary-color: #bfdbfe;
 
@@ -17,13 +19,16 @@ $link-active-color: #3b82f6;
 $shadow-color: #000000;
 
 // padding
-
-$normal-padding: 5px;
+$norm: 3px;
+$normal-padding: 3px;
+$normal-margin: 3px;
 
 // dimensions
-
 $nav-height: 50px;
 
-$content-width: 960px;
+$content-width: 1024px;
 
 $show-case-height: 350px;
+
+// time
+$base_time: 333ms;
