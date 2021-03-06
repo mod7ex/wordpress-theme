@@ -1,3 +1,19 @@
 @mixin animate($attr: all, $time: 333) {
 	transition: $attr $time ease;
 }
+
+@mixin key_frame($name: "move-underline", $duration: 333ms, $count: 1) {
+	@keyframes move-underline {
+		0% {
+			bottom: -5px;
+		}
+
+		100% {
+			bottom: 0;
+		}
+	}
+
+	animation-name: $name;
+	animation-duration: $duration;
+	animation-iteration-count: $count;
+}

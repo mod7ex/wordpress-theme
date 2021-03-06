@@ -55,8 +55,6 @@ header {
 				}
 
 				a {
-					@include animate(color);
-
 					display: inline-block;
 					padding: $normal-padding;
 					text-decoration: none;
@@ -76,6 +74,7 @@ header {
 							bottom: 0;
 							height: 2px;
 							background-color: currentColor;
+							@include key_frame();
 						}
 					}
 				}
