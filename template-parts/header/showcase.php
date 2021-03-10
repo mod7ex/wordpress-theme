@@ -16,7 +16,7 @@ $logo = wp_get_attachment_image_src($custom_logo_id);
     <div id="showcase-area">
         <h1 class="shc-item">
             <?php if(has_custom_logo()): ?>
-            <img src="<?= $logo[0] ?>" alt="">
+            <img src="<?= esc_url($logo[0]) ?>" alt="">
             <?php else: ?>
             <?php bloginfo('name'); ?>
             <?php endif; ?>

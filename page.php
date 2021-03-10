@@ -4,7 +4,7 @@
     <?php if(have_posts()): ?>
     <?php while(have_posts()): the_post(); ?>
 
-    <?php get_template_part('template-parts/posts/content', get_post_format()); ?>
+    <?php the_title(); ?>
 
     <?php endwhile; ?>
     <?php endif; ?>
