@@ -15,7 +15,7 @@
   \*************************************/
 /***/ (() => {
 
-eval("var editor = ace.edit(\"css-editor\");\neditor.setTheme(\"ace/theme/monokai\");\neditor.session.setMode(\"ace/mode/css\");\njQuery(document).ready(function ($) {\n  $(\"form\").on(\"submit\", function (e) {\n    $(\"#hidden-editor\").val(editor.getSession().getValue());\n  });\n});\n\n//# sourceURL=webpack://modexy/./src/js/custom-css.script.js?");
+eval("var editor = ace.edit(\"css-editor\");\neditor.setTheme(\"ace/theme/monokai\");\neditor.session.setMode(\"ace/mode/css\");\njQuery(document).ready(function ($) {\n  $(\"#custom_css_form\").on(\"submit\", function (e) {\n    $(\"#hidden-editor\").val(editor.getSession().getValue());\n  });\n});\n\n//# sourceURL=webpack://modexy/./src/js/custom-css.script.js?");
 
 /***/ })
 

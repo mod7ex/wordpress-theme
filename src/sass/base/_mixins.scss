@@ -5,11 +5,13 @@
 @mixin key_frame($name: "move-underline", $duration: $base_time, $count: 1) {
 	@keyframes move-underline {
 		0% {
-			bottom: -5px;
+			left: 50%;
+			right: 50%;
 		}
 
 		100% {
-			bottom: 0;
+			left: 0;
+			right: 0;
 		}
 	}
 

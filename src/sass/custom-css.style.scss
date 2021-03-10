@@ -1,11 +1,20 @@
-form {
+form#custom_css_form {
 	padding: 1rem;
 
-	#editor-area {
+	#editor-area,
+	#theme_colors {
 		display: flex;
 		justify-content: start;
 		align-items: flex-start;
 		flex-wrap: wrap;
+		margin-bottom: 3rem;
+
+		#theme_colors_palets {
+			margin-left: 7rem;
+			div {
+				margin-bottom: 3rem;
+			}
+		}
 
 		#editor-container {
 			flex-grow: 1;

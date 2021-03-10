@@ -5,20 +5,14 @@
 	@include animate();
 }
 
+ul {
+	list-style: none;
+}
+
 .bg-img {
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
-}
-
-.norm {
-	padding: $norm;
-	margin: $norm;
-}
-
-.normal-box-shadow {
-	// box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3);
-	box-shadow: 1px 1px 3px 0 #d1d5db;
 }
 
 .hidden {
@@ -27,9 +21,23 @@
 
 .link {
 	text-decoration: none;
-	color: $primary-color;
+	color: $primary-link-color;
 	&:hover {
-		color: $secondary-color;
+		color: $secondary-link-color;
 		@include animate();
 	}
+}
+
+.text-shadow {
+	text-shadow: 1px 1px $primary-black;
+}
+
+.box-shadow {
+	text-shadow: 1px 1px $primary-black;
+}
+
+.base-flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

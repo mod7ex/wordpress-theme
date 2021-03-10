@@ -37,7 +37,7 @@ if(isset($_GET['custom_css_suc'])){
 <br>
 
 
-<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="POST">
+<form id="custom_css_form" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="POST">
 
     <input type="hidden" name="action" value="register_custom_styles">
     <?php wp_nonce_field('custom_css_action', '_custom_css_nonce'); ?>
@@ -47,6 +47,27 @@ if(isset($_GET['custom_css_suc'])){
 
         <div id="editor-container">
             <div id="css-editor"><?= $custom_css ?></div>
+        </div>
+    </div>
+
+    <div id="theme_colors">
+        <h3>Theme Colors</h3>
+
+        <div id="theme_colors_palets">
+            <div>
+                <label for="primary_color">Primary Color</label>
+                <input type="color" name="primary_color" id="primary_color">
+            </div>
+
+            <div>
+                <label for="secondary_color">Secondary Color</label>
+                <input type="color" name="secondary_color" id="secondary_color">
+            </div>
+
+            <div>
+                <label for="third_color">Third Color</label>
+                <input type="color" name="third_color" id="third_color">
+            </div>
         </div>
     </div>
 

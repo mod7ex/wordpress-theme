@@ -1,34 +1,33 @@
-// colors
-$primary-color: #1d4ed8;
-$secondary-color: #3b82f6;
+/*
+* ================
+*   Theme Colors
+* ================
+*/
+$primary-color: #312e81;
+$secondary-color: #6d28d9;
+$third-color: #2dd4bf;
 
-$showcase-overlay: #1d4fd86e;
+// white colors
 
-$content-bg-color: #f9fafb;
+$primary-white: #f9fafb;
+$secondary-white: #e5e7eb;
+$third-white: #9ca3af;
 
-// text
-$text-primary-color: #374151;
+// black colors
 
-$text-secondary-color: #f3f4f6;
+$primary-black: #111827;
+$secondary-black: #1f2937;
+$third-black: #374151;
 
-$link-primary-color: #bfdbfe;
+// links
 
-$link-active-color: #3b82f6;
+$primary-link-color: #1d4ed8;
+$secondary-link-color: #60a5fa;
 
-// shadow
-$shadow-color: #000000;
+/*
+* ================
+*   Theme Time
+* ================
+*/
 
-// padding
-$norm: 3px;
-$normal-padding: 3px;
-$normal-margin: 3px;
-
-// dimensions
-$nav-height: 50px;
-
-$content-width: 1024px;
-
-$show-case-height: 350px;
-
-// time
 $base_time: 333ms;
