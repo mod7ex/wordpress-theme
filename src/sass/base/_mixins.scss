@@ -15,7 +15,29 @@
 		}
 	}
 
+	@keyframes taxonomy-animation {
+		0% {
+			color: transparent;
+		}
+
+		50% {
+			color: $third-color;
+		}
+
+		100% {
+			color: $primary-color;
+		}
+	}
+
 	animation-name: $name;
 	animation-duration: $duration;
 	animation-iteration-count: $count;
+}
+
+@mixin text-shadow($color: $secondary-black) {
+	text-shadow: 3px 3px 13px 0 $color;
+}
+
+@mixin box-shadow($color: $secondary-black) {
+	box-shadow: 1px 1px 13px 0 $color;
 }

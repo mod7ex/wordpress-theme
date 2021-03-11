@@ -9,6 +9,11 @@ ul {
 	list-style: none;
 }
 
+a {
+	display: inline-block;
+	text-decoration: none;
+}
+
 .bg-img {
 	background-position: center;
 	background-size: cover;
@@ -40,4 +45,37 @@ ul {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.taxonomy {
+	margin: $base-separation / 3;
+	background-color: $primary-color;
+	color: $primary-white;
+	padding: $base-separation / 1.5;
+	border-radius: 1rem;
+	font-size: $base-separation * 1.7;
+	font-weight: bolder;
+
+	&:hover,
+	&:focus {
+		background-color: transparent;
+		color: $primary-color;
+
+		@include key_frame("taxonomy-animation", $base_time, 1);
+	}
+}
+
+.btn {
+	display: inline-block;
+	background-color: transparent;
+	padding: $base-separation $base-separation * 3;
+	color: $third-black;
+	border: 1px solid $primary-color;
+	color: $primary-color;
+
+	&:hover,
+	&focus {
+		background-color: $primary-color;
+		color: $primary-white;
+	}
 }

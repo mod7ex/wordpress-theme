@@ -126,6 +126,13 @@ function sidebars_markup(){
     
 }
 
+function excerpt_lenght_markup(){
+    $excerpt_lenght = get_option('excerpt_lenght');
+
+    echo '<input type="number" name="excerpt_lenght" class="regular-text" value="' . $excerpt_lenght . '">';
+    echo '<p>The excerpt length is between 30 and 50</p>';
+}
+
 
 
 
@@ -149,6 +156,16 @@ function sanitize_sidebars($sidebars){
     }
 
     return $sidebars;
+}
+
+function sanitize_excerpt_lenght($number){
+    if(is_numeric($number)){
+        if($number < 30)return 30;
+
+        if(50 < $number) return 50;
+    }
+
+    return $number;
 }
 
 
@@ -225,6 +242,7 @@ add_action('admin_menu', function(){
         register_setting('modexy-settings-group', 'custom_background');
         register_setting('modexy-settings-group', 'contact_form');
         register_setting('modexy-settings-group', 'sidebars', 'sanitize_sidebars');
+        register_setting('modexy-settings-group', 'excerpt_lenght', 'sanitize_excerpt_lenght');
 
         add_settings_section('general-settings-section', 'General Settings', function(){}, 'modexy_settings');
 
@@ -233,6 +251,7 @@ add_action('admin_menu', function(){
         add_settings_field('custom-background-field', 'Custom Background', 'custom_background_markup', 'modexy_settings', 'general-settings-section');
         add_settings_field('contact-form-field', 'Contact Form', 'contact_form_markup', 'modexy_settings', 'general-settings-section');
         add_settings_field('sidebars-field', 'Manage Sidebars Names', 'sidebars_markup', 'modexy_settings', 'general-settings-section');
+        add_settings_field('excerpt-lenght-field', 'Theme Excerpt Length', 'excerpt_lenght_markup', 'modexy_settings', 'general-settings-section');
     });
 
 });

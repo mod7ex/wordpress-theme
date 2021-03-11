@@ -94,3 +94,8 @@ add_action('widgets_init', function() {
         ));
     }
 } );
+
+
+add_filter('excerpt_length', function(){
+    return get_option('excerpt_lenght');;
+}, 999);
