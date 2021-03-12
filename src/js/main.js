@@ -1,3 +1,5 @@
+let sidebar = document.getElementById("sidebar");
+
 /*
 let next_item = (i, n) => {
 	return (i + 1) % n;
@@ -107,4 +109,12 @@ document.querySelectorAll(".post-gallery").forEach((gallery) => {
 	galleryItems[currItem].classList.toggle("hidden");
 
 	setSlideInterval(true);
+});
+
+// Side bar
+
+document.querySelectorAll(".sidebar-toggler").forEach((toggler) => {
+	toggler.addEventListener("click", () => {
+		sidebar.classList.toggle("hidden");
+	});
 });

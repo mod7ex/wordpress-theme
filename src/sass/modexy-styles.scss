@@ -4,6 +4,61 @@
 @import "base/config";
 @import "base/functions";
 
+#sidebar {
+	position: fixed;
+	z-index: 9;
+	background-color: $primary-black;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	max-width: $sidebar-width;
+	color: $secondary-white;
+	padding: $base-separation * 3;
+	@include key_frame("sidbar-animation", $base_time * 2, 1);
+
+	&.hidden {
+		@include key_frame("sidbar-animation", $base_time * 5, 1);
+	}
+
+	button.sidebar-toggler {
+		@extend .sidebar-btn;
+		color: $third-white;
+		margin-bottom: $base-separation * 3;
+	}
+
+	a {
+		color: $third-white;
+		padding: $base-separation / 2;
+
+		&:hover {
+			color: $third-color;
+		}
+	}
+
+	.widget-item {
+		margin-bottom: $base-separation * 1.5;
+		margin-bottom: $base-separation * 3;
+
+		ul {
+			&.children {
+				padding-left: $base-separation * 3;
+			}
+		}
+
+		.widget-title {
+			margin: $base-separation;
+			background-color: $third-black;
+			padding: $base-separation;
+			border-radius: $base-separation / 2;
+		}
+
+		ul,
+		div {
+			padding: $base-separation;
+		}
+	}
+}
+
 header {
 	// variables
 	$height: 400px;
@@ -17,6 +72,13 @@ header {
 		position: relative;
 
 		#showcase-area {
+			button.sidebar-toggler {
+				@extend .sidebar-btn;
+				position: absolute;
+				right: $base-separation * 1.3;
+				top: $base-separation;
+			}
+
 			position: absolute;
 			top: 0;
 			bottom: 0;

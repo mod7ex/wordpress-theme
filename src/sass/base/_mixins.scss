@@ -3,6 +3,17 @@
 }
 
 @mixin key_frame($name: "move-underline", $duration: $base_time, $count: 1) {
+	@keyframes sidbar-animation {
+		0% {
+			right: -$sidebar-width;
+			opacity: 0;
+		}
+
+		100% {
+			right: 0;
+		}
+	}
+
 	@keyframes move-underline {
 		0% {
 			left: 50%;

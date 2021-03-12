@@ -20,6 +20,8 @@
 <body <?php body_class(); ?>>
     <div>
 
+        <?php get_sidebar(); ?>
+
         <?php get_template_part('template-parts/header/header'); ?>
 
         <main id="container">

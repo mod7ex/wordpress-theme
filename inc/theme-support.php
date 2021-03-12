@@ -89,8 +89,8 @@ add_action('widgets_init', function() {
             'id'            => 'sidebar-' . ($key + 1),
             'before_widget' => '<div class="widget-item">',
             'after_widget'  => '</div>',
-            'before_title'  => '<h3>',
-            'after_title'   => '</h3>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
         ));
     }
 } );
