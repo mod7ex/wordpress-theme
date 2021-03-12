@@ -91,7 +91,7 @@ main#container {
 
 	#blog-posts {
 		article.post-item {
-			max-width: 800px;
+			max-width: $post-width;
 			margin: 0 auto;
 			margin-bottom: $base-separation * 13;
 			text-align: center;
@@ -150,22 +150,12 @@ main#container {
 
 				.post-attachment {
 					@extend .bg-img;
-					height: 400px;
+					height: $base-img-height;
 					margin-bottom: $base-separation * 3;
 					position: relative;
 
 					div {
-						position: absolute;
-						top: 0;
-						bottom: 0;
-						left: 0;
-						right: 0;
-						background-color: rgba($primary-black, 0.5);
-						box-shadow: inset 3px 3px 20px 0 black;
-
-						&:hover {
-							background-color: rgba($primary-black, 0.1);
-						}
+						@extend .img-overlay;
 					}
 				}
 
@@ -246,6 +236,118 @@ main#container {
 
 					&:hover {
 						box-shadow: 1px 1px 7px 0 rgba($primary-black, 0.3);
+					}
+				}
+			}
+
+			&.post-gallery {
+				overflow: hidden;
+				.post-content {
+					position: relative;
+
+					.post-attachment {
+						@include key_frame("gallery-animation", $base_time * 2, 1);
+					}
+
+					.gallery-overlay {
+						@extend .img-overlay;
+
+						@extend .base-flex;
+						justify-content: space-between;
+
+						span {
+							@extend .base-flex;
+							cursor: pointer;
+							font-size: $base-separation * 4;
+							justify-content: space-between;
+
+							small {
+								color: $primary-color;
+							}
+
+							&:hover {
+								background-color: rgba($primary-color, 0.7);
+								small.thumnail {
+									@extend .bg-img;
+									border-radius: 50%;
+
+									display: inline-block;
+									height: 100px;
+									width: 100px;
+									@include key_frame("thumnail-nav-item", $base_time * 2, 1);
+								}
+							}
+
+							&.gallery-nav-left {
+								border-top-right-radius: 50%;
+								border-bottom-right-radius: 50%;
+
+								small.gallery-nav-btn {
+									margin-right: $base-separation;
+								}
+							}
+
+							&.gallery-nav-right {
+								border-bottom-left-radius: 50%;
+								border-top-left-radius: 50%;
+
+								small.gallery-nav-btn {
+									margin-left: $base-separation;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			&.post-link {
+				.post-content {
+					box-shadow: 1px 1px 7px 0 rgba($primary-black, 0.3);
+					background-color: rgba($secondary-white, 0.5);
+
+					&:hover {
+						box-shadow: 1px 1px 7px 0 rgba($primary-black, 0.1);
+					}
+
+					.post-url {
+						padding: 3 * $base-separation;
+
+						a {
+							position: relative;
+							background-color: rgba($third-black, 0.3);
+							box-shadow: 1px 1px 7px 0 rgba($primary-black, 0.7);
+							padding: $base-separation * 2;
+							border-radius: 50%;
+
+							span {
+								padding: $base-separation;
+								position: absolute;
+								right: 100px;
+								top: 35%;
+								border-radius: $base-separation / 2;
+								background-color: $primary-color;
+								color: $primary-white;
+								display: none;
+							}
+
+							svg {
+								fill: $primary-color;
+							}
+
+							&:hover,
+							&:focus {
+								background-color: rgba($primary-color, 0.9);
+								box-shadow: 1px 1px 7px 0 rgba($primary-black, 0.1);
+								svg {
+									fill: $primary-white;
+								}
+
+								span {
+									display: inline;
+									@include key_frame("link-hover-animation", $base_time * 3, 1);
+								}
+							}
+						}
 					}
 				}
 			}

@@ -7,7 +7,7 @@ function modexy_post_meta(){
     $categories_output = '';
     
     if(has_category()){
-        $categories = get_categories();
+        $categories = get_the_category();
         foreach ($categories as $category) {
 
             $categories_output .= '<a class="post-cat" href="' . esc_url(get_category_link($category->term_id)) . '" >' . $category->name . '</a>';
@@ -28,10 +28,21 @@ function modexy_post_attachement($n = 1){
         $output = wp_get_attachment_url(get_post_thumbnail_id(get_the_ID()));
     }else{
         $attachments = get_posts(array(
+            'post_parent'       => get_the_ID(),
             'post_type'         => 'attachment',
             'posts_per_page'    => $n,
-            'post_parent'       => get_the_ID()
+            'post_mime_type' => 'image'
         ));
+
+
+        // $attachments = get_children(array(
+        //     'post_parent'       => get_the_ID(),
+        //     'post_type'         => 'attachment',
+        //     'posts_per_page'    => $n,
+        //     'post_mime_type' => 'image'
+        // ));
+
+        // $attachments = get_attached_media('image', get_the_ID());
 
         if(!empty($attachments)){
             $output = ($n == 1) ? wp_get_attachment_url($attachments[0]->ID) : $attachments ;
@@ -77,4 +88,23 @@ function modexy_get_embeded_media($types = array('iframe')){
     if(!empty($medias)){
         echo $medias[0];
     }
+}
+
+/*
+function get_all_embeded_media() {
+    $content = apply_filters('the_content', get_the_content());
+
+    $arr = preg_match_all("/<img[^>]* src=\"([^\"]*)\"[^>]*>/", $content, $matches);
+
+    return $arr ? $matches[1] : array();
+}
+*/
+
+
+function modexy_get_embedded_links() {
+    $content = apply_filters('the_content', get_the_content());
+
+    $arr = preg_match_all('/<a[^>]*>([^<]+)<\/a>/', $content, $matches);
+
+    return $arr ? $matches : array();
 }

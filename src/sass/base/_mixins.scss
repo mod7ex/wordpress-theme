@@ -29,6 +29,35 @@
 		}
 	}
 
+	@keyframes gallery-animation {
+		0% {
+			transform: translateX($post-width);
+		}
+
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes thumnail-nav-item {
+		0% {
+			height: 0;
+			width: 0;
+		}
+
+		100% {
+			height: 100px;
+			width: 100px;
+		}
+	}
+
+	@keyframes link-hover-animation {
+		0% {
+			background-color: transparent;
+			color: transparent;
+		}
+	}
+
 	animation-name: $name;
 	animation-duration: $duration;
 	animation-iteration-count: $count;

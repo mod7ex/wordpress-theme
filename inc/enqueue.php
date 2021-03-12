@@ -44,8 +44,14 @@ add_action('wp_enqueue_scripts', function() use ($ver) {
 
     wp_register_style('modexy-styles', AURI . 'assets/css/modexy-styles.css', array(), $ver);
     wp_register_style('added-styles', AURI . 'assets/css/added-styles.css', array(), $ver);
+    wp_register_script('main', AURI . 'assets/js/main.js', array(), $ver, true);
 
     wp_enqueue_style('modexy-styles');
     wp_enqueue_style('added-styles');
+    wp_enqueue_script('main');
+
+    wp_localize_script('main', 'base', array(
+        'gallery_delay' => 3000
+    ));
 
 });

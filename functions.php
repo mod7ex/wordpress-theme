@@ -20,6 +20,14 @@ require_once(AP . 'inc/walker.php');
 require_once(AP . 'inc/post-helper.php');
 
 
+function next_item($i, $n) {
+	return ($i + 1) % $n;
+}
+
+function prev_item($i, $n) {
+	return ($i + 1 + $n) % $n;
+}
+
 // register_activation_hook( __FILE__, function () {
 //     flush_rewrite_rules();
 // });

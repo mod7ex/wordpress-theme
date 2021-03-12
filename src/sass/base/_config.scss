@@ -79,3 +79,17 @@ a {
 		color: $primary-white;
 	}
 }
+
+.img-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba($primary-black, 0.5);
+	box-shadow: inset 3px 3px 20px 0 black;
+
+	&:hover {
+		background-color: rgba($primary-black, 0.1);
+	}
+}

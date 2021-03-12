@@ -8,6 +8,7 @@ module.exports = {
 		// javascript files
 		"custom.css": "./src/js/custom-css.script.js",
 		"modexy.admin": "./src/js/modexy-admin.script.js",
+		main: "./src/js/main.js",
 
 		// scss files
 		"custom-css": "./src/sass/custom-css.style.scss",
