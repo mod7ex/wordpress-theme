@@ -5,6 +5,10 @@
     <?php while(have_posts()): the_post(); ?>
 
     <?php the_title(); ?>
+    <?php modexy_increase_post_views(get_the_ID()); ?>
+    <hr>
+    <?php the_content(); ?>
+
 
     <?php endwhile; ?>
     <?php endif; ?>

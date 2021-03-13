@@ -18,7 +18,7 @@ function settings_page_markup(){
 function profile_img_markup(){
     $profile_img = get_option('profile_img');
 
-    echo '<input type="hidden" name="profile_img" id="profile_img" value"' . $profile_img . '">';
+    echo '<input type="hidden" name="profile_img" id="profile_img" value="' . $profile_img . '">';
 
     if(!empty($profile_img)){
         echo '<button class="browser button button-hero" id="profile_img_uploader">Change Profile</button>';
@@ -60,6 +60,12 @@ function facebook_markup(){
     $facebook = get_option('facebook');
 
     echo '<input type="text" class="regular-text" name="facebook" placeholder="facebook" value="' . $facebook . '" >';
+}
+
+function github_markup(){
+    $github = get_option('github');
+
+    echo '<input type="text" class="regular-text" name="github" placeholder="github" value="' . $github . '" >';
 }
 
 
@@ -218,6 +224,7 @@ add_action('admin_menu', function(){
         register_setting('admin-settings-group', 'description');
         register_setting('admin-settings-group', 'twitter', 'sanitize_twitter_username');
         register_setting('admin-settings-group', 'facebook');
+        register_setting('admin-settings-group', 'github');
 
         add_settings_section('theme-admin-details', 'Admin details', function(){}, 'modexy_admin');
 
@@ -227,6 +234,7 @@ add_action('admin_menu', function(){
         add_settings_field('description', 'Description', 'description_markup', 'modexy_admin', 'theme-admin-details');
         add_settings_field('twitter', 'Twitter Username', 'twitter_markup', 'modexy_admin', 'theme-admin-details');
         add_settings_field('facebook', 'Facebook', 'facebook_markup', 'modexy_admin', 'theme-admin-details');
+        add_settings_field('github', 'Github Username', 'github_markup', 'modexy_admin', 'theme-admin-details');
 
         // // admin custom css
         // register_setting('custom-css-group', 'custom_css', 'sanitize_custom_css');

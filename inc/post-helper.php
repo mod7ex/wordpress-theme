@@ -1,5 +1,6 @@
 <?php
 
+
 function modexy_post_meta(){
 
     $created_at = human_time_diff(get_the_time('U'), current_time('timestamp'));
@@ -107,4 +108,20 @@ function modexy_get_embedded_links() {
     $arr = preg_match_all('/<a[^>]*>([^<]+)<\/a>/', $content, $matches);
 
     return $arr ? $matches : array();
+}
+
+
+// Post Views
+function modexy_get_the_views($post_id) {
+    global $post_views;
+
+    return get_post_meta($post_id, $post_views, true);
+}
+
+function modexy_increase_post_views($post_id) {
+    global $post_views;
+
+    $views = get_post_meta($post_id, $post_views, true);
+
+    update_post_meta($post_id, $post_views, ++$views);
 }

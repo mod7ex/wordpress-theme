@@ -1,5 +1,4 @@
-<div id="sidebar"
-    class="hidden slide-fade-leave-to slide-fade-enter-from slide-fade-enter-active slide-fade-leave-active">
+<div id="sidebar" class="">
 
     <button class="sidebar-toggler">&times;</button>
 

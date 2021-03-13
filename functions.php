@@ -19,6 +19,8 @@ require_once(AP . 'inc/walker.php');
 
 require_once(AP . 'inc/post-helper.php');
 
+require_once(AP . 'inc/widgets.php');
+
 
 function next_item($i, $n) {
 	return ($i + 1) % $n;
