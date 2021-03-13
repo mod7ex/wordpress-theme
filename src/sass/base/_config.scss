@@ -16,6 +16,15 @@ a {
 
 button {
 	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+}
+
+.container {
+	font-family: sans-serif;
+	margin: 0 auto;
+	padding: $base-separation * 2;
 }
 
 .bg-img {
@@ -111,5 +120,104 @@ button {
 
 	&:focus {
 		outline: none;
+	}
+}
+
+.post-header {
+	margin-bottom: $base-separation * 5;
+
+	h1.post-title {
+		a,
+		span {
+			font-size: 2.5rem;
+			font-weight: lighter;
+			color: $secondary-black;
+			margin-bottom: $base-separation * 3;
+
+			&:hover,
+			&:focus {
+				color: $primary-color;
+			}
+
+			&:after,
+			&:before {
+				content: "~";
+				font-weight: bolder;
+			}
+		}
+	}
+
+	.post-meta {
+		@extend .base-flex;
+		justify-content: space-between;
+
+		small {
+			margin: 0 $base-separation * 2;
+
+			&.categories {
+				a.post-cat {
+					@extend .taxonomy;
+				}
+			}
+		}
+	}
+}
+
+.post-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 5px solid $third-black;
+	padding-bottom: 3 * $base-separation;
+
+	small {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+
+		span {
+			a.post-tag {
+				@extend .taxonomy;
+			}
+		}
+
+		svg {
+			fill: $primary-color;
+			margin: 0 $base-separation;
+		}
+	}
+}
+
+.search-form {
+	.fields {
+		display: flex;
+		align-items: center;
+		justify-content: stretch;
+		background-color: $secondary-white;
+
+		input {
+			margin: 0;
+			padding: $base-separation * 1.5;
+			border: none;
+
+			&:focus {
+				outline: none;
+				background-color: $secondary-white;
+			}
+		}
+
+		button {
+			padding: 0 $base-separation;
+			font-size: $base-separation * 4;
+			font-weight: bolder;
+			border: none;
+			flex-grow: 1;
+			background: none;
+			transform: rotate(100deg);
+
+			&:hover {
+				color: $primary-color;
+			}
+		}
 	}
 }

@@ -1,4 +1,4 @@
-<div id="sidebar" class="">
+<div id="sidebar" class="hidden">
 
     <button class="sidebar-toggler">&times;</button>
 

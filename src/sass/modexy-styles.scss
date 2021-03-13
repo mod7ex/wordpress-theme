@@ -99,7 +99,7 @@
 	}
 }
 
-header {
+header#header {
 	// variables
 	$height: 400px;
 	$nav-height: 33px;
@@ -186,11 +186,9 @@ header {
 }
 
 main#container {
-	font-family: sans-serif;
-	max-width: 1024px;
-	margin: 0 auto;
-	padding: $base-separation * 2;
-
+	@extend .container;
+	max-width: $main-width;
+	min-height: 50vh;
 	#blog-posts {
 		article.post-item {
 			max-width: $post-width;
@@ -208,42 +206,7 @@ main#container {
 			}
 
 			header {
-				margin-bottom: $base-separation * 5;
-
-				h1.post-title {
-					a {
-						font-size: 2.5rem;
-						font-weight: lighter;
-						color: $secondary-black;
-						margin-bottom: $base-separation * 3;
-
-						&:hover,
-						&:focus {
-							color: $primary-color;
-						}
-
-						&:after,
-						&:before {
-							content: "~";
-							font-weight: bolder;
-						}
-					}
-				}
-
-				.post-meta {
-					@extend .base-flex;
-					justify-content: space-between;
-
-					small {
-						margin: 0 $base-separation * 2;
-
-						&.categories {
-							a.post-cat {
-								@extend .taxonomy;
-							}
-						}
-					}
-				}
+				@extend .post-header;
 			}
 
 			.post-content {
@@ -276,28 +239,7 @@ main#container {
 			}
 
 			footer {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				border-bottom: 5px solid $third-black;
-				padding-bottom: 3 * $base-separation;
-
-				small {
-					display: flex;
-					align-items: center;
-					justify-content: space-evenly;
-
-					span {
-						a.post-tag {
-							@extend .taxonomy;
-						}
-					}
-
-					svg {
-						fill: $primary-color;
-						margin: 0 $base-separation;
-					}
-				}
+				@extend .post-footer;
 			}
 
 			&.post-audio {
@@ -453,6 +395,53 @@ main#container {
 					}
 				}
 			}
+		}
+	}
+
+	.single-post {
+		header {
+			text-align: center;
+			@extend .post-header;
+
+			.post-title {
+				margin-bottom: $base-separation * 5;
+			}
+		}
+
+		.content-area {
+			padding: $base-separation;
+		}
+
+		footer {
+			margin-top: $base-separation * 5;
+			@extend .post-footer;
+		}
+	}
+}
+
+footer#footer {
+	background-color: $secondary-black;
+	padding: $base-separation * 3;
+	color: $secondary-white;
+
+	a {
+		color: $secondary-link-color;
+
+		&:hover,
+		&:focus {
+			color: $third-color;
+		}
+	}
+
+	.container {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		max-width: $main-width * 1.5;
+
+		.footer-block {
+			margin: $base-separation * 2 $base-separation;
 		}
 	}
 }

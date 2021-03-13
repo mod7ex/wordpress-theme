@@ -118,3 +118,13 @@ document.querySelectorAll(".sidebar-toggler").forEach((toggler) => {
 		sidebar.classList.toggle("hidden");
 	});
 });
+
+// Prevent submitting an empty form
+
+document.querySelectorAll(".search-form").forEach((form) => {
+	form.addEventListener("submit", (e) => {
+		if (form.querySelector("input").value == "") {
+			e.preventDefault();
+		}
+	});
+});
