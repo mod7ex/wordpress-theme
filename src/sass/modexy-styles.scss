@@ -187,9 +187,87 @@ header#header {
 
 main#container {
 	@extend .container;
-	max-width: $main-width;
+
+	#posts-pagination {
+		text-align: center;
+		.pagination-title {
+			margin-bottom: $base-separation * 3;
+			color: $primary-black;
+		}
+
+		.nav-links {
+			.page-numbers {
+				display: inline-block;
+				padding: $base-separation $base-separation * 2;
+				font-size: $base-separation * 2.7;
+				margin: $base-separation * 1.3;
+				border: 1px solid rgba($primary-black, 0.3);
+				font-weight: bold;
+
+				&:hover {
+					background-color: $primary-color;
+					color: $primary-white;
+				}
+			}
+
+			.dots {
+				border: none;
+				&:hover {
+					background-color: transparent;
+					color: black;
+				}
+			}
+
+			.current {
+				background-color: $third-white;
+				color: $primary-black;
+				border: none;
+
+				&:hover {
+					background-color: $third-white;
+					color: $primary-black;
+				}
+			}
+		}
+	}
+
 	min-height: 50vh;
 	#blog-posts {
+		.archive-area {
+			max-width: $post-width;
+			margin: $base-separation * 3 auto $base-separation * 5 auto;
+
+			.archive-title {
+				color: $primary-black;
+				b {
+					color: $primary-color;
+				}
+			}
+
+			.archive-description {
+				color: $secondary-black;
+				padding-left: $base-separation * 23;
+			}
+		}
+
+		.search-area {
+			max-width: $post-width;
+			margin: $base-separation * 3 auto $base-separation * 5 auto;
+			display: flex;
+			justify-content: space-between;
+
+			input {
+				background-color: $secondary-white;
+			}
+
+			.search-title {
+				color: $primary-black;
+				b {
+					color: $primary-color;
+				}
+			}
+		}
+
 		article.post-item {
 			max-width: $post-width;
 			margin: 0 auto;
@@ -310,7 +388,7 @@ main#container {
 							}
 
 							&:hover {
-								background-color: rgba($primary-color, 0.7);
+								background-color: $primary-color;
 								small.thumnail {
 									@extend .bg-img;
 									border-radius: 50%;
@@ -525,6 +603,22 @@ main#container {
 					}
 				}
 			}
+		}
+	}
+
+	.not-found-area {
+		.title {
+			display: block;
+			font-size: $base-separation * 5;
+			text-align: center;
+			font-weight: 900;
+		}
+
+		.image {
+			margin: $base-separation * 3 auto 0 auto;
+			height: 300px;
+			width: 300px;
+			@extend .bg-img;
 		}
 	}
 }

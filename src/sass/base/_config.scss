@@ -13,6 +13,11 @@ ol {
 a {
 	display: inline-block;
 	text-decoration: none;
+	color: $primary-link-color;
+
+	&:visited {
+		color: $primary-link-color;
+	}
 }
 
 input,
@@ -30,6 +35,7 @@ button {
 }
 
 .container {
+	max-width: $main-width;
 	font-family: sans-serif;
 	margin: 0 auto;
 	padding: $base-separation * 2;

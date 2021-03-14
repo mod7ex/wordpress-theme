@@ -29,8 +29,11 @@ add_action('admin_enqueue_scripts', function ($hook) use ($ver) {
     if($hook == 'modexy_page_modexy_settings') {
 
         wp_register_style('modexy-settings', AURI . 'assets/css/modexy-settings.css', array(), $ver, 'all');
+        wp_register_script('modexy-settings', AURI . 'assets/js/modexy.settings.js', array(), $ver, true);
 
         wp_enqueue_style('modexy-settings');
+        wp_enqueue_media();
+        wp_enqueue_script('modexy-settings');
     }
 
 });

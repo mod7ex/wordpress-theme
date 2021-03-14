@@ -139,7 +139,23 @@ function excerpt_lenght_markup(){
     echo '<p>The excerpt length is between 30 and 50</p>';
 }
 
+function notfound_image_markup(){
+    $notfound_image = get_option('notfound_image');
 
+    echo '<input type="hidden" name="notfound_image" id="notfound_image" value="' . $notfound_image . '">';
+
+    if(!empty($notfound_image)){
+        echo '<button class="browser button button-hero" id="notfound_image_uploader">Change 404 Page Image</button>';
+        echo '<button id="notfound_image_remover">Remove 404 Page Image</button>';
+    }else {
+        echo '<button class="browser button button-hero" id="notfound_image_uploader">Upload 404 Page Image</button>';
+        echo '<button class="hidden" id="notfound_image_remover">Remove 404 Page Image</button>';
+    }
+
+    echo '<p id="notfound_image_msg" class="hidden">Dont\'t forget to save changes</p>';
+
+    echo '<div id="notfound-view" style="background-image: url(' . esc_url(wp_get_attachment_image_url($notfound_image)) . ');"></div>';
+}
 
 
 // sanitize input
@@ -251,6 +267,7 @@ add_action('admin_menu', function(){
         register_setting('modexy-settings-group', 'contact_form');
         register_setting('modexy-settings-group', 'sidebars', 'sanitize_sidebars');
         register_setting('modexy-settings-group', 'excerpt_lenght', 'sanitize_excerpt_lenght');
+        register_setting('modexy-settings-group', 'notfound_image');
 
         add_settings_section('general-settings-section', 'General Settings', function(){}, 'modexy_settings');
 
@@ -260,6 +277,7 @@ add_action('admin_menu', function(){
         add_settings_field('contact-form-field', 'Contact Form', 'contact_form_markup', 'modexy_settings', 'general-settings-section');
         add_settings_field('sidebars-field', 'Manage Sidebars Names', 'sidebars_markup', 'modexy_settings', 'general-settings-section');
         add_settings_field('excerpt-lenght-field', 'Theme Excerpt Length', 'excerpt_lenght_markup', 'modexy_settings', 'general-settings-section');
+        add_settings_field('notfound-image-field', '404 Page Image', 'notfound_image_markup', 'modexy_settings', 'general-settings-section');
     });
 
 });

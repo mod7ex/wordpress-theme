@@ -24,3 +24,26 @@
 		}
 	}
 }
+
+#notfound-view {
+	width: 230px;
+	height: 230px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: 1px solid gray;
+	margin: 3px 0;
+}
+
+#notfound_image_remover {
+	margin-left: 2rem;
+	border: 1px solid rgba(128, 128, 128, 0.3);
+	padding: 10px 15px;
+	background-color: #eee;
+	cursor: pointer;
+	color: rgba(0, 0, 255, 0.9);
+}
+
+#notfound_image_msg {
+	color: red;
+}
