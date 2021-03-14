@@ -6,7 +6,7 @@
     <?php modexy_increase_post_views(get_the_ID()); ?>
 
     <!-- Post Header -->
-    <header>
+    <header class="single-post-header">
         <h1 class="post-title">
             <span>
                 <?php the_title(); ?>
@@ -20,9 +20,11 @@
         <?php the_content(); ?>
     </div>
 
-    <footer>
+    <footer class="single-post-footer">
         <?php modexy_post_footer(); ?>
     </footer>
+
+    <?php comments_template(); ?>
 
     <?php endwhile; ?>
     <?php endif; ?>
