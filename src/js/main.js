@@ -116,6 +116,9 @@ document.querySelectorAll(".post-gallery").forEach((gallery) => {
 document.querySelectorAll(".sidebar-toggler").forEach((toggler) => {
 	toggler.addEventListener("click", () => {
 		sidebar.classList.toggle("hidden");
+		document.querySelector(".screen-overlay").classList.toggle("hidden");
+
+		document.body.classList.toggle("no-scroll");
 	});
 });
 

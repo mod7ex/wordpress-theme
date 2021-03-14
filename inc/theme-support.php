@@ -99,3 +99,35 @@ add_action('widgets_init', function() {
 add_filter('excerpt_length', function(){
     return get_option('excerpt_lenght');;
 }, 999);
+
+
+add_filter('the_content', function($content){
+
+    global $twitter, $facebook, $google_plus, $whatsapp;
+
+    // add share buttons
+
+    if(!is_single()){
+        return $content;
+    }
+
+    $message = 'Hey Read This: ' . get_the_title();
+    $permal_link = get_the_permalink();
+    $twitter_handler = get_option('twitter') ? esc_attr(get_option('twitter')) : '';
+    
+    $twitter_share_link = 'https://twitter.com/intent/tweet?text=' . $message . '&amp;url=' . $permal_link . '&amp;via=' . $twitter_handler;
+    $facebook_share_link = 'https://www.facebook.com/sharer/sharer.php?u=' . $permal_link;
+    $whatsapp_share_link = 'https://api.whatsapp.com/send?text=' . $permal_link;
+    
+    $content .= '
+        <div class="modexy-share">
+            <ul>
+                <li><a class="share-item" href="' . esc_url($twitter_share_link) . '" target="_blank" rel="nofollow">' . $twitter . '</a></li>
+                <li><a class="share-item" href="' . esc_url($facebook_share_link) . '" target="_blank" rel="nofollow">' . $facebook . '</a></li>
+                <li><a class="share-item" href="' . esc_url($whatsapp_share_link) . '" target="_blank" rel="nofollow">' . $whatsapp . '</a></li>
+            </ul>
+        </div>
+    ';
+
+    return $content;
+});
