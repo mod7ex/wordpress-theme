@@ -1,7 +1,5 @@
 <?php
 
-
-
 add_action('init', function(){
 
     $contact_form = get_option('contact_form');
@@ -14,7 +12,7 @@ add_action('init', function(){
                 'singular_name'            =>  __('Message'),
                 'add_new'                  =>  __('Add New'),
                 'add_new_item'             =>  __('Add New Message'),
-                'edit_item'                =>  __('Edit Message'),
+                'edit_item'                =>  __('Message'),
                 'new_item'                 =>  __('New Message'),
                 'view_item'                =>  __('View Message'),
                 'view_items'               =>  __('View Messages'),
@@ -55,9 +53,20 @@ add_action('init', function(){
             'menu_icon'             => 'dashicons-buddicons-pm',
             // 'capability_type'       => 'post',
             'has_archive'           => false,
-            'supports'              => array('title', 'editor', 'excerpt'),
+            // 'supports'              => array('title', 'editor'),
             // 'taxonomies'            => array( 'category', 'post_tag' ),
-            'rewrite'               => false
+            'rewrite'               => false,
+            'capabilities' => array (
+                'create_posts'              => false,
+                'edit_post'                 => 'manage_options',
+                'update_posts'              => 'manage_options',
+                'read_post'                 => 'manage_options',
+                'delete_post'               => 'manage_options',
+                'edit_posts'                => 'manage_options',
+                'edit_others_posts'         => 'manage_options',
+                'publish_posts'             => false,
+                'read_private_posts'        => 'manage_options',
+            ),
         ));
 
 
@@ -74,7 +83,7 @@ add_action('init', function(){
         });
 
 
-        # manage_{$post->post_type}_posts_custom_column"
+        # "manage_{$post->post_type}_posts_custom_column"
         add_action("manage_message_posts_custom_column", function($column_name, $post_id) {
             switch ($column_name) {
                 case 'message':
@@ -82,18 +91,51 @@ add_action('init', function(){
                     break;
 
                 case 'email':
-
                     echo '<a href="mailto:' . get_post_meta($post_id, '_email_meta_key', true) . '">' . get_post_meta($post_id, '_email_meta_key', true) . '</a>';
                     break;
             }
         }, 10, 2);
 
+        // remove bulk actions
+        add_filter( 'bulk_actions-edit-message', function ( $actions ){ # bulk_actions-edit-{$custom_post_name}, bulk_actions-{$this->screen->id}
+            // unset( $actions[ 'edit' ] );
+            // return $actions;
+            return;
+        });
 
         /**
          * 
-         * Contact meta box
+         * Contact meta boxes
          */
-        add_action('add_meta_boxes', function(){
+        add_action('admin_init', function () { # remove form inputs and replace them with read-only
+            remove_post_type_support('message', 'title');
+            remove_post_type_support('message','editor');
+            remove_meta_box( 'submitdiv', 'message', 'side' );
+        });
+
+        // add meta boxes to show content
+        add_action( 'add_meta_boxes', function () {
+            add_meta_box(
+                'message-author-box',
+                __( 'Author' ),
+                function ($post) {
+                    echo '<div style="text-align: center;"><b>' . apply_filters('the_title',$post->post_title) . '</b></div>';
+                },
+                'message',
+                'side',
+                'high'
+            );
+
+            add_meta_box(
+                'message-content-box',
+                __('Message Content'),
+                function ($post) {
+                    echo '<div style="padding: 3px;"><b>' . apply_filters('the_content',$post->post_content) . '</b></div>';
+                },
+                'message',
+                'advanced',
+                'low'
+            );
 
             add_meta_box(
                 'email-box',
@@ -102,16 +144,17 @@ add_action('init', function(){
                     wp_nonce_field('email_action', '_email_nonce');
                     $email = get_post_meta($post->ID, '_email_meta_key', true);
 
-                    echo '<div style="padding: 0.5rem;"><input type="email" name="contact_email_field" value="' . $email . '" placeholder="E-mail" ></div>';
+                    echo '<div style="padding: 0.5rem; text-align: center;"><b>' . $email . '</b></div>';
                 },
                 'message',
                 'side',
                 'core'
             );
-            
         });
 
 
+
+        /*
         // save_post_{$post_type}
         add_action('save_post_message', function ($post_id) {
 
@@ -144,6 +187,65 @@ add_action('init', function(){
             update_post_meta($post_id, '_email_meta_key', $email);
 
         });
-
+        */
     }
 });
+
+
+/*
+    add_action('edit_form_after_title', function ($post) { // for a specific post
+        remove_post_type_support('message','editor');
+        do_meta_boxes('message', 'new_context', $post);
+    });
+
+    add_action( 'edit_form_top', function () {
+        echo __( 'hello world' );
+    });
+
+
+    add_action( 'admin_menu', function () {
+        remove_meta_box( 'submitdiv', 'message', 'side' );
+    });
+
+    add_action('admin_head-edit.php', function () {
+        add_filter(
+            'the_title',
+            function ( $title, $id ) {
+                return $title;
+            },
+            100,
+            2
+        );
+    });
+*/
+
+
+
+
+add_filter('post_row_actions',function ( $actions, $post ) {
+    if($post->post_type === 'message'){
+        $actions['view'] = str_replace('Edit', 'View', $actions['edit']);
+
+        unset($actions['inline hide-if-no-js']);
+        unset($actions['edit']);
+    }
+
+    return $actions;
+}, 10, 2);
+
+add_filter( 'post_date_column_status' , function ( $status, $post) {
+    if($post->post_type === 'message'){
+        return;
+    }
+    return $status;
+}, 10, 2);
+
+
+add_filter( 'post_date_column_time' , function ( $post_datetime, $post ) {
+    if($post->post_type === 'message'){
+        $datetime = human_time_diff(get_post_timestamp(), current_time('timestamp'));
+        return 'Sent: ' . $datetime . ' ago';
+    }
+
+    return $post_datetime;
+} , 10 , 2 );

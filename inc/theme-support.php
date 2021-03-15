@@ -96,9 +96,13 @@ add_action('widgets_init', function() {
 } );
 
 
-add_filter('excerpt_length', function(){
-    return get_option('excerpt_lenght');;
-}, 999);
+add_filter('excerpt_length', function ($length) {
+    global $post;
+    if ($post->post_type == 'message'){
+        return 13;
+    }
+    return get_option('excerpt_lenght');
+}, 100);
 
 
 add_filter('the_content', function($content){

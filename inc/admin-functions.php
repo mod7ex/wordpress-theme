@@ -181,13 +181,10 @@ function sanitize_sidebars($sidebars){
 }
 
 function sanitize_excerpt_lenght($number){
-    if(is_numeric($number)){
-        if($number < 30)return 30;
-
-        if(50 < $number) return 50;
+    if(is_numeric($number) && $number > 0){
+        return $number;
     }
-
-    return $number;
+    return 10;
 }
 
 
