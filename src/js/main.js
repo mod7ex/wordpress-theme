@@ -1,4 +1,22 @@
 let sidebar = document.getElementById("sidebar");
+let contact_form = document.querySelector("#contact-form form");
+
+let alert_message = (message, bool) => {
+	let msg = document.createElement("div");
+	let class_name = bool ? "success" : "error";
+	msg.className = "alert " + class_name;
+	msg.innerHTML = "<h4>" + message + "</h4><span class='close'>&#10006;</span>";
+
+	msg.querySelector(".close").addEventListener("click", () => {
+		msg.remove();
+	});
+
+	setTimeout(() => {
+		msg.remove();
+	}, 7000);
+
+	document.querySelector("body > div").appendChild(msg);
+};
 
 /*
 let next_item = (i, n) => {
@@ -130,4 +148,34 @@ document.querySelectorAll(".search-form").forEach((form) => {
 			e.preventDefault();
 		}
 	});
+});
+
+contact_form.addEventListener("submit", (e) => {
+	e.preventDefault();
+
+	let name = contact_form.querySelector("#name").value,
+		email = contact_form.querySelector("#email").value,
+		message = contact_form.querySelector("#message").value;
+
+	let contactForm = new FormData();
+
+	contactForm.append("name", name);
+	contactForm.append("email", email);
+	contactForm.append("message", message);
+	contactForm.append("_nonce", base.nonce);
+	contactForm.append("action", base.contact_us);
+
+	fetch(base.ajax_url, {
+		method: "POST",
+		body: contactForm,
+	})
+		.then((resp) => {
+			return resp.json();
+		})
+		.then((feed) => {
+			alert_message(feed.message, feed.bool);
+		})
+		.catch((err) => {
+			alert_message("Oops something went wrong", false);
+		});
 });

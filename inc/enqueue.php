@@ -53,8 +53,14 @@ add_action('wp_enqueue_scripts', function() use ($ver) {
     wp_enqueue_style('added-styles');
     wp_enqueue_script('main');
 
+
+    $nonce = wp_create_nonce();
     wp_localize_script('main', 'base', array(
-        'gallery_delay' => 3000
+        'gallery_delay' => 3000,
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+        // 'ajax_url' => '/wp-admin/admin-ajax.php', 
+        'nonce' => $nonce,
+        'contact_us' => 'contact_msg_action',
     ));
 
 });

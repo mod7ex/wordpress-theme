@@ -28,6 +28,12 @@
     </div>
 </footer>
 
+<!-- 
+<div class="alert success">
+    <h4>Contact Form Message Here</h4>
+    <span class="close">&#10006;</span>
+</div> -->
+
 </div>
 <?php wp_footer(); ?>
 

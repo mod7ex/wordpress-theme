@@ -12,6 +12,7 @@ $logo = wp_get_attachment_image_src($custom_logo_id);
 
 ?>
 <?php if(has_header_image()): ?>
+
 <div id="showcase" style="background-image: url(<?php esc_url(header_image()); ?>);">
     <div id="showcase-area">
         <button class="sidebar-toggler">&#9776;</button>
@@ -25,7 +26,9 @@ $logo = wp_get_attachment_image_src($custom_logo_id);
         <h3 class="shc-item"><?php bloginfo('description'); ?></h3>
     </div>
 </div>
+
 <?php else: ?>
+
 <div id="showcase">
     <div id="showcase-area">
         <button class="sidebar-toggler">&#9776;</button>
@@ -39,4 +42,5 @@ $logo = wp_get_attachment_image_src($custom_logo_id);
         <h3 class="shc-item"><?php bloginfo('description'); ?></h3>
     </div>
 </div>
+
 <?php endif; ?>
