@@ -26,11 +26,16 @@ if(isset($_GET['custom_css_suc'])){
 <?php
 }
 
-    // ******** get the css in the file
-    $css_file = fopen(AP . 'assets/css/added-styles.css',"r");
-    $custom_css = fread($css_file, fstat($css_file)['size'] + 1);
-    $custom_css = $custom_css ? $custom_css : '/* Edit Your Css Here */';
-    fclose($css_file);
+    if(file_exists('assets/css/added-styles.css')){
+        // ******** get the css in the file
+        $css_file = fopen(AP . 'assets/css/added-styles.css',"r");
+        $custom_css = fread($css_file, fstat($css_file)['size'] + 1);
+        $custom_css = $custom_css ? $custom_css : '/* Edit Your Css Here */';
+        fclose($css_file);
+    }else{
+        $custom_css = '/* Edit Your Css Here */';
+    }
+
 
 ?>
 
