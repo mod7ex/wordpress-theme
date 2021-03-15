@@ -2,7 +2,7 @@
 	transition: $attr $time ease;
 }
 
-@mixin key_frame($name: "move-underline", $duration: $base_time, $count: 1) {
+@mixin key_frame($name: "move-underline", $duration: $base_time, $count: 1, $timing: ease-in) {
 	@keyframes sidbar-animation {
 		0% {
 			right: -$sidebar-width;
@@ -69,9 +69,20 @@
 		}
 	}
 
+	@keyframes pending-animation {
+		0% {
+			transform: rotate(0);
+		}
+
+		100% {
+			transform: rotate(359deg);
+		}
+	}
+
 	animation-name: $name;
 	animation-duration: $duration;
 	animation-iteration-count: $count;
+	animation-timing-function: $timing;
 }
 
 @mixin text-shadow($color: $secondary-black) {

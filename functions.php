@@ -34,6 +34,17 @@ function prev_item($i, $n) {
 	return ($i + 1 + $n) % $n;
 }
 
+
+
+add_action('phpmailer_init', function ($phpmailer) {
+  $phpmailer->isSMTP();
+  $phpmailer->Host = 'smtp.mailtrap.io';
+  $phpmailer->SMTPAuth = true;
+  $phpmailer->Port = 2525;
+  $phpmailer->Username = '6697185fabfbda';
+  $phpmailer->Password = 'c7b12164297e6d';
+});
+
 // register_activation_hook( __FILE__, function () {
 //     flush_rewrite_rules();
 // });

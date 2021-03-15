@@ -9,7 +9,7 @@ function modexy_save_contact_message() {
 
     $title = $_POST['name'];
     $email = $_POST['email'];
-    $message = $_POST['message'];
+    $message = esc_html($_POST['message']);
 
     $post_id = wp_insert_post(array(
         'post_type' => 'message',
@@ -20,9 +20,22 @@ function modexy_save_contact_message() {
     ));
 
     $feed = array();
+
     if(is_int($post_id) && $post_id > 0){
         $feed['message'] = 'Message sent successfuly';
         $feed['bool'] = true;
+
+        $to = get_bloginfo('admin_email');
+        $subject = 'Modexy Contact Form ' . $title;
+        $headers = array(
+            'From: ' . get_bloginfo('name') . '<' . $to . '>',
+            'Content-Type: text/html: charset=UTF-8',
+            'Reply-To: ' . $title . '<' . $email . '>',
+
+        );
+
+        wp_mail($to, $subject, $message, $headers);
+        
     }else{
         $feed['message'] = 'Oops somthing went wrong';
         $feed['bool'] = false;

@@ -362,3 +362,23 @@ button {
 		background-color: rgba(255, 0, 0, 0.7);
 	}
 }
+
+.screen-overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 8;
+	@extend .base-flex;
+
+	&.hidden {
+		display: none;
+	}
+
+	.loading {
+		fill: white;
+		@include key_frame("pending-animation", $base_time * 5, infinite, linear);
+	}
+}
