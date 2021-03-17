@@ -2,6 +2,19 @@
 
     <button class="sidebar-toggler">&times;</button>
 
+
+    <div>
+        <?php if(is_user_logged_in()): ?>
+        <form action="<?= esc_url( admin_url('admin-post.php') ) ?>" method="post">
+            <input type="hidden" name="_logout_nonce" value="<?= wp_create_nonce('_logout_nonce_action') ?>">
+            <input type="hidden" name="action" value="modexy_logout_action">
+            <input type="submit" class="btn-link" name="logout" value="Logout">
+        </form>
+        <?php else: ?>
+        <a href="/login">Login</a>
+        <?php endif; ?>
+    </div>
+
     <?php dynamic_sidebar('sidebar-1'); ?>
 
 </div>

@@ -117,6 +117,7 @@ button {
 
 .btn {
 	display: inline-block;
+	cursor: pointer;
 	background-color: transparent;
 	padding: $base-separation $base-separation * 3;
 	color: $third-black;
@@ -298,38 +299,42 @@ button {
 	}
 }
 
-#contact-form {
-	form {
-		max-width: $post-width;
-		margin: 0 auto;
+.form {
+	max-width: $post-width;
+	margin: 0 auto;
 
-		.form-field {
-			margin: $base-separation * 3;
+	.form-field {
+		margin: $base-separation * 3;
 
-			.input-field {
-				margin: $base-separation 0;
-				display: block;
-				width: 100%;
-				padding: $base-separation * 1.3;
-				border: none;
-				box-shadow: 1px 1px 5px 0 rgba($primary-black, 0.3);
-				border-bottom: 5px solid transparent;
+		.input-field {
+			margin: $base-separation 0;
+			display: block;
+			width: 100%;
+			padding: $base-separation * 1.3;
+			border: none;
+			box-shadow: 1px 1px 5px 0 rgba($primary-black, 0.3);
+			border-bottom: 5px solid transparent;
 
-				&:hover {
-					box-shadow: 1px 1px 5px 0 rgba($primary-black, 0.5);
-				}
+			&:hover {
+				box-shadow: 1px 1px 5px 0 rgba($primary-black, 0.5);
+			}
 
-				&:focus {
-					box-shadow: none;
-					border-bottom: 3px solid $primary-color;
-				}
+			&:focus {
+				box-shadow: none;
+				border-bottom: 3px solid $primary-color;
+			}
 
-				&.submit {
-					text-align: center;
-					margin-top: $base-separation * 3 0;
-				}
+			&.submit {
+				text-align: center;
+				margin-top: $base-separation * 3 0;
 			}
 		}
+	}
+}
+
+#contact-form {
+	form {
+		@extend .form;
 	}
 }
 
@@ -381,4 +386,19 @@ button {
 		fill: white;
 		@include key_frame("pending-animation", $base_time * 5, infinite, linear);
 	}
+}
+
+.btn-link {
+	cursor: pointer;
+	background: none;
+	border: none;
+	color: $primary-link-color;
+
+	&:hover {
+		color: $secondary-link-color;
+	}
+}
+
+.error {
+	color: red;
 }

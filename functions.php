@@ -25,6 +25,7 @@ require_once(AP . 'inc/ajax.php');
 
 require_once(AP . 'inc/shortcodes.php');
 
+require_once(AP . 'inc/auth.php');
 
 function next_item($i, $n) {
 	return ($i + 1) % $n;
