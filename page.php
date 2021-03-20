@@ -1,7 +1,6 @@
 <?php get_header(); ?>
 
 
-
 <div class="page">
     <?php if(have_posts()): ?>
     <?php while(have_posts()): the_post(); ?>

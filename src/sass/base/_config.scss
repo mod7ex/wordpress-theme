@@ -303,10 +303,18 @@ button {
 	max-width: $post-width;
 	margin: 0 auto;
 
-	.form-field {
+	.form-field,
+	p {
 		margin: $base-separation * 3;
 
-		.input-field {
+		input[type="submit"] {
+			@extend .btn;
+		}
+
+		.input-field,
+		input[type="text"],
+		input[type="email"],
+		input[type="password"] {
 			margin: $base-separation 0;
 			display: block;
 			width: 100%;
@@ -401,4 +409,19 @@ button {
 
 .error {
 	color: red;
+}
+
+#registered-msg {
+	text-align: center;
+	background-color: $secondary-white;
+	border: 1px solid rgba($primary-black, 0.1);
+	padding: $base-separation * 5;
+
+	h3 {
+		margin-bottom: $base-separation * 3;
+	}
+}
+
+.login-info {
+	color: green;
 }

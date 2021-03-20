@@ -694,19 +694,21 @@ footer#footer {
 	}
 }
 
-#login {
-	h1 {
-		font-size: 2rem;
+#login,
+#signup,
+#password-lost-form,
+#password-reset-form {
+	.login-error {
+		color: red;
 	}
 
-	height: 97vh;
-	@extend .base-flex;
-	flex-direction: column;
+	max-width: $post-width * 0.7;
+	width: 100%;
+	margin: 0 auto;
 
 	form {
-		max-width: $post-width * 0.7;
-		width: 100%;
 		@extend .form;
 		border: 1px solid rgba($primary-black, 0.1);
+		margin: $base-separation * 5 0;
 	}
 }

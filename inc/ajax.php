@@ -31,7 +31,6 @@ function modexy_save_contact_message() {
             'From: ' . get_bloginfo('name') . '<' . $to . '>',
             'Content-Type: text/html: charset=UTF-8',
             'Reply-To: ' . $title . '<' . $email . '>',
-
         );
 
         wp_mail($to, $subject, $message, $headers);

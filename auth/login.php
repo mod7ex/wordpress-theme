@@ -4,9 +4,8 @@
 
 if(is_user_logged_in()) {
     wp_redirect(home_url());
-    die;
+    exit;
 }
-
 
 if(isset($_POST['submit'])){
     if(wp_verify_nonce($_POST['_login_nonce'], '_login_nonce_action')){
@@ -23,6 +22,17 @@ if(isset($_POST['submit'])){
         }
     }
 }
+
+$user_login = '';
+$user_password = '';
+$remember = '';
+
+if(isset($_POST['login'])) {
+    $user_login = array_key_exists('user_login', $_POST['login']) ? $_POST['login']['user_login'] : '';
+    $user_password = array_key_exists('user_password', $_POST['login']) ? $_POST['login']['user_password'] : '';
+    $remember = array_key_exists('remember', $_POST['login']) ? 'checked' : '';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -62,22 +72,26 @@ if(isset($_POST['submit'])){
             <div class="form-field">
                 <label for="user_login">Username or E-mail</label>
                 <input type="text" class="input-field" name="login[user_login]" id="user_login"
-                    value="<?php isset($_POST['login']['user_login']) ? $_POST['login']['user_login'] : '' ?>">
+                    value="<?php echo $user_login; ?>">
             </div>
 
             <div class="form-field">
                 <label for="user_password">Password</label>
                 <input type="password" class="input-field" name="login[user_password]" id="user_password"
-                    value="<?php isset($_POST['login']['user_password']) ? $_POST['login']['user_password'] : '' ?>">
+                    value="<?php echo $user_password; ?>">
             </div>
 
             <div class="form-field">
-                <input type="checkbox" class="" name="login[remember]" id="remember" checked>
+                <input type="checkbox" class="" name="login[remember]" id="remember" <?php echo $remember; ?>>
                 <label for="remember">Remeber me</label>
             </div>
 
             <div class="form-field">
                 <input name="submit" type="submit" class="btn submit" value="Login">
+            </div>
+
+            <div class="form-field">
+                <small>dont't have an account <a href="/sign-up">sign up</a></small>
             </div>
         </form>
     </div>
