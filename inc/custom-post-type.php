@@ -1,10 +1,56 @@
 <?php
 
+/**
+ *      'capability_type' => 'post',
+ *      this will give
+ * 
+ *         'capabilities' => array (
+ *              // 3 meta capabilities. 
+ *              'edit_post'                 => 'edit_post',
+ *              'delete_post'               => 'delete_post',
+ *              'read_post'                 => 'read_post',
+ * 
+ *              // 11 primitive capabilities
+ *              'edit_posts'                => 'edit_posts',
+ *              'edit_others_posts'         => 'edit_others_posts',
+ *              'edit_published_posts'      => 'edit_published_posts',
+ *              'edit_private_posts'        => 'edit_private_posts',
+ *              'delete_posts'              => 'delete_posts',
+ *              'delete_others_posts'       => 'delete_others_posts',
+ *              'delete_private_posts'      => 'delete_private_posts',
+ *              'delete_published_posts'    => 'delete_published_posts',
+ *              'read_private_posts'        => 'read_private_posts',
+ *              'read'                      => 'read',
+ *              'publish_posts'             => 'publish_posts',
+ *          );
+*/
+
 add_action('init', function(){
 
     $contact_form = get_option('contact_form');
 
     if(!empty($contact_form)){
+
+        $capabilities = array (
+                // 3 meta capabilities. 
+                'edit_post'                 => 'edit_message',
+				'delete_post'               => 'delete_message',
+				'read_post'                 => 'read_message',
+
+                // 12 primitive capabilities
+				'edit_posts'                => 'edit_messages',
+				'edit_others_posts'         => 'edit_others_messages',
+                'edit_published_posts'      => 'edit_published_messages',
+                'edit_private_posts'        => 'edit_private_messages',
+				'delete_posts'              => 'delete_messages',
+				'delete_others_posts'       => 'delete_others_messages',
+                'delete_private_posts'      => 'delete_private_messages',
+                'delete_published_posts'    => 'delete_published_messages',
+				'read_private_posts'        => 'read_private_messages',
+                'read'                      => 'read',
+				'publish_posts'             => 'publish_messages',
+                'create_posts'              => 'create_messages',
+        );
         
         register_post_type('message', array(
             'labels' => array(
@@ -51,24 +97,18 @@ add_action('init', function(){
             'show_in_rest'          => false,
             'menu_position'         => 30,
             'menu_icon'             => 'dashicons-buddicons-pm',
-            // 'capability_type'       => 'post',
             'has_archive'           => false,
             // 'supports'              => array('title', 'editor'),
             // 'taxonomies'            => array( 'category', 'post_tag' ),
+            // 'capability_type'       => 'post', # will have the same capabilites as post => if user can read post 'post type' he can read message too
             'rewrite'               => false,
-            'capabilities' => array (
-                'create_posts'              => false,
-                'edit_post'                 => 'manage_options',
-                'update_posts'              => 'manage_options',
-                'read_post'                 => 'manage_options',
-                'delete_post'               => 'manage_options',
-                'edit_posts'                => 'manage_options',
-                'edit_others_posts'         => 'manage_options',
-                'publish_posts'             => false,
-                'read_private_posts'        => 'manage_options',
-            ),
+            'capabilities' => $capabilities,
         ));
 
+        $role = get_role('administrator');
+        foreach ($capabilities as $name => $cap) {
+            $role->add_cap($cap);
+        }
 
         // custom columns
         add_filter("manage_message_posts_columns", function($post_columns){ # manage_{$custom_post}_posts_columns
@@ -224,10 +264,12 @@ add_action('init', function(){
 
 add_filter('post_row_actions',function ( $actions, $post ) {
     if($post->post_type === 'message'){
-        $actions['view'] = str_replace('Edit', 'View', $actions['edit']);
+        if(array_key_exists('edit', $actions)){
+            $actions['view'] = str_replace('Edit', 'View', $actions['edit']);
+            unset($actions['edit']);
+        }
 
         unset($actions['inline hide-if-no-js']);
-        unset($actions['edit']);
     }
 
     return $actions;

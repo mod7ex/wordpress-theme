@@ -1,6 +1,5 @@
 <?php
 
-
 require_once(get_template_directory() . '/inc/config.php');
 
 require_once(AP . 'inc/enqueue.php');
@@ -27,6 +26,8 @@ require_once(AP . 'inc/shortcodes.php');
 
 require_once(AP . 'inc/auth.php');
 
+require_once(AP . 'inc/users.php');
+
 function next_item($i, $n) {
 	return ($i + 1) % $n;
 }
@@ -34,8 +35,6 @@ function next_item($i, $n) {
 function prev_item($i, $n) {
 	return ($i + 1 + $n) % $n;
 }
-
-
 
 add_action('phpmailer_init', function ($phpmailer) {
   $phpmailer->isSMTP();

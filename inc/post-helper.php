@@ -3,8 +3,8 @@
 
 function modexy_post_meta(){
 
-    $created_at = human_time_diff(get_the_time('U'), current_time('timestamp'));
-    $author = get_the_author_link();
+    $created_at = human_time_diff(get_the_time('U'), current_time('timestamp')); # php date formating
+    $author = '<a href="' . get_author_posts_url(get_the_author_meta('ID')) . '">' . get_the_author() . '</a>';
     $categories_output = '';
     
     if(has_category()){

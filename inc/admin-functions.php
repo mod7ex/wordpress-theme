@@ -278,3 +278,7 @@ add_action('admin_menu', function(){
     });
 
 });
+
+// add_action('admin_menu', function(){
+//     add_options_page('Test Page', 'test Options', 'manage_options', 'test-options', function(){}, 10);
+// });
