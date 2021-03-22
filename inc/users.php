@@ -1,7 +1,6 @@
 <?php
 
 /*
-
     -> without providing capabilities we have:
 
 	// Meta capabilities
@@ -24,7 +23,6 @@
 	[edit_private_posts]     => "edit_private_{$capability_type}s"
 	[edit_published_posts]   => "edit_published_{$capability_type}s"
 	[create_posts]           => "edit_{$capability_type}s"
-
 */
 
 /**
@@ -116,73 +114,80 @@ add_action('init', function(){
 				'create_posts'              => 'create_books',
         ),
     ));
-/*
-    // create custom capabolity
-    $roles = wp_roles();
-    $role = $roles->role_objects['administrator'];
-    $role->add_cap('test_custom_cap');
+    /*
+        // create custom capabolity
+        $roles = wp_roles();
+        $role = $roles->role_objects['administrator'];
+        $role->add_cap('test_custom_cap');
 
-    // Or
+        // Or
 
-    $role = get_role('administrator');
-    $role->add_cap('test_custom_cap');
-*/
+        $role = get_role('administrator');
+        $role->add_cap('test_custom_cap');
+    */
+
+    /*
+        $role = add_role(
+            'helper',
+            'Helper',
+            array(),
+        );
+
+        if($role) {
+            $role->add_cap('read');
+        }
+    */
 });
 
 
-// add_action( 'init', function () {
-//     add_role(
-//         'new_role',
-//         'New Role',
-//         array(
-//             'read'                      => true,
-//             'edit_posts'                => true,
-//             'edit_published_posts'      => true,
-//             'publish_posts'             => true,
-//         ),
-//     );
-// }); 
+/*
+    map_meta_cap filter hook is user to extend the map_meta_cap() function
+    to convert a meta capability to one or more primitive capabilities
+            'meta capability' ==> 'primitive capabilities'
 
-// add_filter( 'map_meta_cap', 'my_map_meta_cap', 10, 4 );
+        -> https://developer.wordpress.org/reference/hooks/map_meta_cap/
 
-// function my_map_meta_cap( $caps, $cap, $user_id, $args ) {
 
-// 	/* If editing, deleting, or reading a movie, get the post and post type object. */
-// 	if ( 'edit_movie' == $cap || 'delete_movie' == $cap || 'read_movie' == $cap ) {
-// 		$post = get_post( $args[0] );
-// 		$post_type = get_post_type_object( $post->post_type );
+    add_filter( 'map_meta_cap', function ( $caps, $cap, $user_id, $args ) {
 
-// 		/* Set an empty array for the caps. */
-// 		$caps = array();
-// 	}
+        // If editing, deleting, or reading a movie, get the post and post type object.
+        if ( 'edit_movie' == $cap || 'delete_movie' == $cap || 'read_movie' == $cap ) {
+            $post = get_post( $args[0] );
+            $post_type = get_post_type_object( $post->post_type );
 
-// 	/* If editing a movie, assign the required capability. */
-// 	if ( 'edit_movie' == $cap ) {
-// 		if ( $user_id == $post->post_author )
-// 			$caps[] = $post_type->cap->edit_posts;
-// 		else
-// 			$caps[] = $post_type->cap->edit_others_posts;
-// 	}
+            // Set an empty array for the caps.
+            $caps = array();
+        }
 
-// 	/* If deleting a movie, assign the required capability. */
-// 	elseif ( 'delete_movie' == $cap ) {
-// 		if ( $user_id == $post->post_author )
-// 			$caps[] = $post_type->cap->delete_posts;
-// 		else
-// 			$caps[] = $post_type->cap->delete_others_posts;
-// 	}
+        // If editing a movie, assign the required capability.
+        if ( 'edit_movie' == $cap ) {
+            if ( $user_id == $post->post_author )
+                $caps[] = $post_type->cap->edit_posts;
+            else
+                $caps[] = $post_type->cap->edit_others_posts;
+        }
 
-// 	/* If reading a private movie, assign the required capability. */
-// 	elseif ( 'read_movie' == $cap ) {
+        // If deleting a movie, assign the required capability.
+        elseif ( 'delete_movie' == $cap ) {
+            if ( $user_id == $post->post_author )
+                $caps[] = $post_type->cap->delete_posts;
+            else
+                $caps[] = $post_type->cap->delete_others_posts;
+        }
 
-// 		if ( 'private' != $post->post_status )
-// 			$caps[] = 'read';
-// 		elseif ( $user_id == $post->post_author )
-// 			$caps[] = 'read';
-// 		else
-// 			$caps[] = $post_type->cap->read_private_posts;
-// 	}
+        // If reading a private movie, assign the required capability.
+        elseif ( 'read_movie' == $cap ) {
 
-// 	/* Return the capabilities required by the user. */
-// 	return $caps;
-// }
+            if ( 'private' != $post->post_status )
+                $caps[] = 'read';
+            elseif ( $user_id == $post->post_author )
+                $caps[] = 'read';
+            else
+                $caps[] = $post_type->cap->read_private_posts;
+        }
+
+        // Return the capabilities required by the user.
+        return $caps;
+    }, 10, 4 );
+
+*/

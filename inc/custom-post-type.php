@@ -32,24 +32,25 @@ add_action('init', function(){
     if(!empty($contact_form)){
 
         $capabilities = array (
-                // 3 meta capabilities. 
-                'edit_post'                 => 'edit_message',
-				'delete_post'               => 'delete_message',
-				'read_post'                 => 'read_message',
+            // 3 meta capabilities. 
+            'edit_post'                 => 'edit_message',
+            'delete_post'               => 'delete_message',
+            'read_post'                 => 'read_message',
 
-                // 12 primitive capabilities
-				'edit_posts'                => 'edit_messages',
-				'edit_others_posts'         => 'edit_others_messages',
-                'edit_published_posts'      => 'edit_published_messages',
-                'edit_private_posts'        => 'edit_private_messages',
-				'delete_posts'              => 'delete_messages',
-				'delete_others_posts'       => 'delete_others_messages',
-                'delete_private_posts'      => 'delete_private_messages',
-                'delete_published_posts'    => 'delete_published_messages',
-				'read_private_posts'        => 'read_private_messages',
-                'read'                      => 'read',
-				'publish_posts'             => 'publish_messages',
-                'create_posts'              => 'create_messages',
+            // 12 primitive capabilities
+            'edit_posts'                => 'edit_messages',
+            'edit_others_posts'         => 'edit_others_messages',
+            'edit_published_posts'      => 'edit_published_messages',
+            'edit_private_posts'        => 'edit_private_messages',
+            'delete_posts'              => 'delete_messages',
+            'delete_others_posts'       => 'delete_others_messages',
+            'delete_private_posts'      => 'delete_private_messages',
+            'delete_published_posts'    => 'delete_published_messages',
+            'read_private_posts'        => 'read_private_messages',
+            'read'                      => 'read',
+            'publish_posts'             => 'publish_messages',
+            // 'create_posts'              => 'create_messages',
+            'create_posts'              => 'do_not_allow',
         );
         
         register_post_type('message', array(
@@ -102,7 +103,7 @@ add_action('init', function(){
             // 'taxonomies'            => array( 'category', 'post_tag' ),
             // 'capability_type'       => 'post', # will have the same capabilites as post => if user can read post 'post type' he can read message too
             'rewrite'               => false,
-            'capabilities' => $capabilities,
+            'capabilities'          => $capabilities,
         ));
 
         $role = get_role('administrator');
