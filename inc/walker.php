@@ -139,3 +139,22 @@ class Modexy_Walker_Comment extends Walker_Comment
     <?php
     }
 }
+
+
+add_filter('nav_manu_css_class', function($classes, $item, $args){
+
+    if ( 'primary' === $args->theme_location ) {
+        $classes[] = 'nav-item';
+    }
+
+    return $classes;
+}, 1, 3);
+
+add_filter('nav_manu_link_attributes', function($classes, $item, $args){
+
+    if ( 'primary' === $args->theme_location ) {
+        $classes['class'] = 'nav-link menu-link';
+    }
+
+    return $classes;
+}, 1, 3);
