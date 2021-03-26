@@ -282,3 +282,28 @@ add_action('admin_menu', function(){
 // add_action('admin_menu', function(){
 //     add_options_page('Test Page', 'test Options', 'manage_options', 'test-options', function(){}, 10);
 // });
+
+
+
+add_action('customize_register', function($wp_customize){
+    // adding section
+    $wp_customize->add_section('sec_copyright', array(
+        'title'         => "Copyright Section",
+        'description'   => "This is a copyright section"
+    ));
+
+    // adding settings/field
+    $wp_customize->add_setting("set_copyright", array(
+        "type"  => "theme_mod",
+        "default"  => '<a href="/"><strong>' . get_bloginfo('name') . ' Website</strong></a> | All rights reserved &copy; ' .  date('Y'),
+        "sanitize_callback" => "sanitize_text_field"
+    ));
+
+    // add control
+    $wp_customize->add_control('set_copyright', array(
+        "label" => "Copyright",
+        "description" => "Please fill the copyright text",
+        "section" => "sec_copyright",
+        "type" => "text",
+    ));
+});

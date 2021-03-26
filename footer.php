@@ -3,7 +3,7 @@
 <footer id="footer">
     <div class="container">
         <div class="footer-block">
-            <a href="/"><strong>Modexy Website</strong></a> | All rights reserved &copy; <?= date("Y") ?>
+            <?php echo get_theme_mod('set_copyright', '<a href="/"><strong>' . get_bloginfo('name') . ' Website</strong></a> | All rights reserved &copy; ' .  date('Y')); ?>
         </div>
 
         <div class="footer-block">
